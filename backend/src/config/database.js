@@ -1,14 +1,16 @@
 const { Pool } = require('pg');
 
-if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL est obligatoire pour connecter PostgreSQL');
-}
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+const pool = process.env.DATABASE_URL
+  ? new Pool({
+      connectionString: process.env.DATABASE_URL,
+    })
+  : null;
 
 function query(text, params) {
+  if (!pool) {
+    throw new Error('DATABASE_URL est manquant. La base de donnees n est pas configuree.');
+  }
+
   return pool.query(text, params);
 }
 

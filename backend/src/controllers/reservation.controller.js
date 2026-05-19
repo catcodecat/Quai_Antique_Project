@@ -44,6 +44,12 @@ async function createReservation(req, res) {
   } catch (error) {
     console.error(error);
 
+    if (error.message.includes('DATABASE_URL') || error.code === 'ECONNREFUSED') {
+      return res.status(503).json({
+        message: 'La base de donnees n est pas disponible pour le moment',
+      });
+    }
+
     return res.status(500).json({
       message: 'Erreur lors de l enregistrement de la reservation',
     });

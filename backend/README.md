@@ -26,8 +26,10 @@ npm start
 L'API sera disponible sur :
 
 ```text
-http://localhost:3000
+http://localhost:3001
 ```
+
+J'utilise le port `3001` en développement local pour éviter un conflit si le port `3000` est déjà utilisé sur mon ordinateur.
 
 ## Base de données
 
@@ -42,6 +44,8 @@ DATABASE_URL
 Avec Docker Compose, un service `database` est prévu automatiquement.
 
 Au démarrage, le backend crée la table `reservations` si elle n'existe pas encore.
+
+Si PostgreSQL n'est pas encore lancé, le serveur démarre quand même. La route de test reste disponible, et les routes qui ont besoin de la base de données renvoient un message clair.
 
 ## Route de test
 
