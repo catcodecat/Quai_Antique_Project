@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservation - Quai Antique</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Quai Antique</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="gallery.html">Galerie</a>
+        <a href="menu.html">La carte</a>
+        <a href="reservation.html">Les reservations</a>
+        <a href="login.html">Mon compte</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero-page">
+        <h1>Réserver votre repas</h1>
+      </section>
+
+      <section class="content-page">
+        <form class="form-panel">
+          <div class="form-row">
+            <label for="date">Date</label>
+            <input id="date" type="date" />
+          </div>
+          <div class="form-row">
+            <label for="time">Heure</label>
+            <input id="time" type="time" />
+          </div>
+          <div class="form-row">
+            <label for="guests">Nombre de personnes</label>
+            <select id="guests">
+              <option>2 personnes</option>
+              <option>3 personnes</option>
+              <option>4 personnes</option>
+              <option>5 personnes</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="allergy">Allergies</label>
+            <textarea id="allergy" placeholder="Message"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn" type="submit">Réserver</button>
+          </div>
+          <p class="form-message" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <section>
+        <h2>Nos horaires</h2>
+        <p>Du mardi au dimanche 12:00-14:00 18:00-23:00</p>
+      </section>
+      <section>
+        <h2>Quai Antique</h2>
+        <p>5 rue de la route</p>
+        <p>31150 Ville</p>
+        <p>04 01 01 01 01</p>
+      </section>
+      <section>
+        <h2>Contact</h2>
+        <p>contact@quaiantique.com</p>
+      </section>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>

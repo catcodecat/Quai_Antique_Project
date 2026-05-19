@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La carte - Quai Antique</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Quai Antique</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="gallery.html">Galerie</a>
+        <a href="menu.html">La carte</a>
+        <a href="reservation.html">Les reservations</a>
+        <a href="login.html">Mon compte</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero-page">
+        <h1>La carte</h1>
+        <a class="btn" href="reservation.html">Réserver une table</a>
+      </section>
+
+      <section class="content-page">
+        <nav class="tabs" aria-label="Catégories de la carte">
+          <a class="active" href="#entrees" data-tab="entrees">Entrées</a>
+          <a href="#plats" data-tab="plats">Plats</a>
+          <a href="#desserts" data-tab="desserts">Desserts</a>
+        </nav>
+
+        <div class="menu-list">
+          <article class="menu-category is-visible" id="entrees" data-panel="entrees">
+            <h2>Entrées</h2>
+            <div class="dish">
+              <div>
+                <h3>Entrée 1</h3>
+                <p>Description du plat</p>
+              </div>
+              <strong>8 €</strong>
+            </div>
+            <div class="dish">
+              <div>
+                <h3>Entrée 2</h3>
+                <p>Description du plat</p>
+              </div>
+              <strong>10 €</strong>
+            </div>
+          </article>
+
+          <article class="menu-category" id="plats" data-panel="plats">
+            <h2>Plats</h2>
+            <div class="dish">
+              <div>
+                <h3>Plat 1</h3>
+                <p>Description du plat</p>
+              </div>
+              <strong>18 €</strong>
+            </div>
+            <div class="dish">
+              <div>
+                <h3>Plat 2</h3>
+                <p>Description du plat</p>
+              </div>
+              <strong>22 €</strong>
+            </div>
+          </article>
+
+          <article class="menu-category" id="desserts" data-panel="desserts">
+            <h2>Desserts</h2>
+            <div class="dish">
+              <div>
+                <h3>Dessert 1</h3>
+                <p>Description du plat</p>
+              </div>
+              <strong>7 €</strong>
+            </div>
+            <div class="dish">
+              <div>
+                <h3>Dessert 2</h3>
+                <p>Description du plat</p>
+              </div>
+              <strong>9 €</strong>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <section>
+        <h2>Nos horaires</h2>
+        <p>Du mardi au dimanche 12:00-14:00 18:00-23:00</p>
+      </section>
+      <section>
+        <h2>Quai Antique</h2>
+        <p>5 rue de la route</p>
+        <p>31150 Ville</p>
+        <p>04 01 01 01 01</p>
+      </section>
+      <section>
+        <h2>Contact</h2>
+        <p>contact@quaiantique.com</p>
+      </section>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
