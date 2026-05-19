@@ -137,31 +137,31 @@ Pour cette première vérification, je présente une première version du site Q
 
 ### Page d'accueil
 
-![Page d'accueil](../screens/acceuil.png)
+![Page d'accueil](images-optimisees/acceuil.jpg)
 
 ### Page galerie
 
-![Page galerie](../screens/galerie.png)
+![Page galerie](images-optimisees/galerie.jpg)
 
 ### Page menu
 
-![Page menu](../screens/menu.png)
+![Page menu](images-optimisees/menu.jpg)
 
 ### Page réservation
 
-![Page réservation](../screens/reservation.png)
+![Page réservation](images-optimisees/reservation.jpg)
 
 ### Page connexion
 
-![Page connexion](../screens/mon-compte.png)
+![Page connexion](images-optimisees/mon-compte.jpg)
 
 ### Déploiement Netlify
 
-![Déploiement Netlify](../screens/netlify.png)
+![Déploiement Netlify](images-optimisees/netlify.jpg)
 
 ### Repository GitHub
 
-![Repository GitHub](../screens/github.png)
+![Repository GitHub](images-optimisees/github.jpg)
 
 ## Fichiers nécessaires pour montrer le projet au professeur
 
