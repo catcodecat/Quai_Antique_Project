@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Présentation Quai-Antique</title>
+    <style>
+      :root {
+        --text: #222222;
+        --muted: #666666;
+        --line: #dedede;
+        --accent: #8a5a1f;
+        --bg: #faf8f4;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--text);
+        background: var(--bg);
+        font-family: Arial, sans-serif;
+        line-height: 1.55;
+      }
+
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 32px 22px 56px;
+      }
+
+      header,
+      section {
+        margin-bottom: 22px;
+        padding: 24px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 6px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin-top: 0;
+        color: var(--accent);
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      h2 {
+        font-size: 22px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 8px;
+      }
+
+      p {
+        margin: 0 0 12px;
+      }
+
+      ul {
+        margin-top: 8px;
+      }
+
+      code,
+      pre {
+        background: #f1eee8;
+        border-radius: 4px;
+      }
+
+      code {
+        padding: 2px 4px;
+      }
+
+      pre {
+        overflow-x: auto;
+        padding: 14px;
+      }
+
+      a {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      figure {
+        margin: 18px 0 0;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fffdf9;
+        page-break-inside: avoid;
+      }
+
+      figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+      }
+
+      figcaption {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .note {
+        padding: 14px;
+        border-left: 4px solid var(--accent);
+        background: #fbf2e4;
+      }
+
+      .links li {
+        margin-bottom: 8px;
+      }
+
+      @media print {
+        body {
+          background: #ffffff;
+        }
+
+        main {
+          max-width: none;
+          padding: 0;
+        }
+
+        header,
+        section {
+          border-radius: 0;
+          page-break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Quai-Antique</h1>
+        <p>
+          Je présente le projet Quai-Antique, un site web réalisé dans le cadre
+          de ma formation. Pour cette première vérification, le projet est
+          encore en cours de développement.
+        </p>
+      </header>
+
+      <section>
+        <h2>Présentation courte du projet</h2>
+        <p>
+          Quai-Antique est un site de restaurant fictif. Il permet de présenter
+          le restaurant, sa galerie, sa carte et une première page de
+          réservation.
+        </p>
+      </section>
+
+      <section>
+        <h2>Objectif du site</h2>
+        <p>
+          L'objectif est de créer une base de site claire pour un restaurant,
+          puis d'ajouter progressivement un backend, une base de données et un
+          espace administrateur.
+        </p>
+      </section>
+
+      <section>
+        <h2>Contexte pédagogique</h2>
+        <p>
+          Ce projet me permet de travailler la structure HTML, le style CSS,
+          l'interactivité JavaScript, l'organisation Git, Docker et la
+          préparation d'une documentation simple.
+        </p>
+      </section>
+
+      <section>
+        <h2>Cahier des charges simplifié</h2>
+        <ul>
+          <li>Créer une page d'accueil.</li>
+          <li>Créer une galerie.</li>
+          <li>Créer une page menu.</li>
+          <li>Créer une page réservation.</li>
+          <li>Préparer une page connexion et inscription.</li>
+          <li>Documenter le backend et la sécurité prévus.</li>
+          <li>Préparer Git, Docker, GitHub et Netlify.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Fonctionnalités prévues</h2>
+        <ul>
+          <li>Inscription et connexion utilisateur.</li>
+          <li>Réservation enregistrée en base de données.</li>
+          <li>Gestion des menus et des plats.</li>
+          <li>Espace administrateur.</li>
+          <li>Validation des formulaires.</li>
+          <li>Sécurisation des données utilisateur.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Fonctionnalités déjà réalisées</h2>
+        <ul>
+          <li>Pages HTML principales.</li>
+          <li>Navigation entre les pages.</li>
+          <li>Mise en page CSS.</li>
+          <li>Responsive de base.</li>
+          <li>Onglets JavaScript sur la page menu.</li>
+          <li>Messages simples après l'envoi des formulaires.</li>
+          <li>Documentation de première remise.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Technologies utilisées</h2>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>JavaScript</li>
+          <li>Git</li>
+          <li>Docker avec Nginx</li>
+          <li>GitHub</li>
+          <li>Netlify</li>
+        </ul>
+        <p>
+          Pour cette première vérification, je garde volontairement la structure
+          HTML/CSS/JavaScript actuelle.
+        </p>
+      </section>
+
+      <section>
+        <h2>Structure des fichiers du projet</h2>
+        <pre><code>Quai_Antique_Project/
+├── assets/images/
+├── docs/
+├── presentation/
+├── screens/
+├── index.html
+├── gallery.html
+├── menu.html
+├── reservation.html
+├── login.html
+├── register.html
+├── styles.css
+├── app.js
+├── README.md
+├── Dockerfile
+├── docker-compose.yml
+├── .gitignore
+└── .env.example</code></pre>
+      </section>
+
+      <section>
+        <h2>Sécurité prévue</h2>
+        <p>
+          La sécurité réelle sera ajoutée avec le backend. Pour la suite, je
+          prévois le hash des mots de passe avec bcrypt, une authentification
+          JWT ou session, des variables d'environnement, la validation des
+          formulaires, la protection CORS et la gestion des rôles.
+        </p>
+      </section>
+
+      <section>
+        <h2>Backend et base de données prévus</h2>
+        <p>
+          Le backend n'est pas encore développé. Je prévois d'utiliser Node.js
+          avec Express. La base de données devra contenir les utilisateurs, les
+          réservations, les menus, les plats, les horaires et les avis.
+        </p>
+      </section>
+
+      <section>
+        <h2>Docker / GitHub / Netlify</h2>
+        <p>
+          Docker sert à lancer le site statique avec Nginx. GitHub sert à
+          versionner le projet. Netlify sert à montrer une première version
+          déployée.
+        </p>
+      </section>
+
+      <section>
+        <h2>Liens du projet</h2>
+        <ul class="links">
+          <li>
+            GitHub :
+            <a href="https://github.com/catcodecat/Quai_Antique_Project">
+              https://github.com/catcodecat/Quai_Antique_Project
+            </a>
+          </li>
+          <li>
+            Netlify :
+            <a href="https://quai-antique-projet.netlify.app">
+              https://quai-antique-projet.netlify.app
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>État actuel du projet</h2>
+        <p>
+          Le projet est une première version fonctionnelle côté interface. Les
+          pages existent, mais les formulaires ne sont pas encore reliés à une
+          API et aucune donnée n'est encore enregistrée en base.
+        </p>
+      </section>
+
+      <section>
+        <h2>Ce que je présente au professeur</h2>
+        <p class="note">
+          Pour cette première vérification, je présente une première version du
+          site Quai-Antique. Le projet contient actuellement une interface
+          HTML/CSS/JavaScript, une documentation de base, une configuration
+          Docker simple et les premiers éléments nécessaires pour expliquer la
+          suite du développement.
+        </p>
+      </section>
+
+      <section>
+        <h2>Captures d'écran</h2>
+
+        <figure>
+          <img src="../screens/acceuil.png" alt="Page d'accueil" />
+          <figcaption>Page d'accueil</figcaption>
+        </figure>
+
+        <figure>
+          <img src="../screens/galerie.png" alt="Page galerie" />
+          <figcaption>Page galerie</figcaption>
+        </figure>
+
+        <figure>
+          <img src="../screens/menu.png" alt="Page menu" />
+          <figcaption>Page menu</figcaption>
+        </figure>
+
+        <figure>
+          <img src="../screens/reservation.png" alt="Page réservation" />
+          <figcaption>Page réservation</figcaption>
+        </figure>
+
+        <figure>
+          <img src="../screens/mon-compte.png" alt="Page connexion" />
+          <figcaption>Page connexion</figcaption>
+        </figure>
+
+        <figure>
+          <img src="../screens/netlify.png" alt="Déploiement Netlify" />
+          <figcaption>Déploiement Netlify</figcaption>
+        </figure>
+
+        <figure>
+          <img src="../screens/github.png" alt="Repository GitHub" />
+          <figcaption>Repository GitHub</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h2>Fichiers nécessaires pour montrer le projet au professeur</h2>
+        <ul>
+          <li><code>README.md</code></li>
+          <li><code>presentation/presentation-quai-antique.html</code></li>
+          <li><code>presentation/presentation-quai-antique.md</code></li>
+          <li><code>screens/</code></li>
+          <li>lien GitHub</li>
+          <li>lien Netlify</li>
+          <li><code>Dockerfile</code></li>
+          <li><code>docker-compose.yml</code></li>
+          <li><code>.gitignore</code></li>
+          <li><code>.env.example</code></li>
+          <li>documentation dans <code>docs/</code></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Prochaines étapes</h2>
+        <ul>
+          <li>Corriger les remarques du professeur.</li>
+          <li>Créer le backend Express.</li>
+          <li>Créer la base de données.</li>
+          <li>Connecter les formulaires.</li>
+          <li>Ajouter une vraie authentification.</li>
+          <li>Créer l'espace administrateur.</li>
+          <li>Renforcer la sécurité.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Conclusion de l'étudiant</h2>
+        <p>
+          Cette première version me permet de montrer la base du projet
+          Quai-Antique. Le site n'est pas encore terminé, mais il contient déjà
+          les pages principales, une première organisation de fichiers, des
+          captures d'écran, une documentation et les liens GitHub et Netlify.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
