@@ -3,3 +3,35 @@ services:
     build: .
     ports:
       - "8080:80"
+
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      CORS_ORIGIN: http://localhost:8080
+      DATABASE_URL: postgresql://quai_user:quai_password@database:5432/quai_antique
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: quai_user
+      POSTGRES_PASSWORD: quai_password
+      POSTGRES_DB: quai_antique
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quai_user -d quai_antique"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
