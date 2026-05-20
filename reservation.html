@@ -24,27 +24,39 @@
       </section>
 
       <section class="content-page">
-        <form class="form-panel">
+        <form class="form-panel" id="reservationForm">
+          <div class="form-row">
+            <label for="firstName">Prénom</label>
+            <input id="firstName" name="firstName" type="text" required />
+          </div>
+          <div class="form-row">
+            <label for="lastName">Nom</label>
+            <input id="lastName" name="lastName" type="text" required />
+          </div>
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required />
+          </div>
           <div class="form-row">
             <label for="date">Date</label>
-            <input id="date" type="date" />
+            <input id="date" name="date" type="date" required />
           </div>
           <div class="form-row">
             <label for="time">Heure</label>
-            <input id="time" type="time" />
+            <input id="time" name="time" type="time" required />
           </div>
           <div class="form-row">
             <label for="guests">Nombre de personnes</label>
-            <select id="guests">
-              <option>2 personnes</option>
-              <option>3 personnes</option>
-              <option>4 personnes</option>
-              <option>5 personnes</option>
+            <select id="guests" name="guests" required>
+              <option value="2">2 personnes</option>
+              <option value="3">3 personnes</option>
+              <option value="4">4 personnes</option>
+              <option value="5">5 personnes</option>
             </select>
           </div>
           <div class="form-row">
-            <label for="allergy">Allergies</label>
-            <textarea id="allergy" placeholder="Message"></textarea>
+            <label for="allergies">Allergies</label>
+            <textarea id="allergies" name="allergies" placeholder="Message"></textarea>
           </div>
           <div class="form-actions">
             <button class="btn" type="submit">Réserver</button>

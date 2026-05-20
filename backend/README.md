@@ -26,10 +26,10 @@ npm start
 L'API sera disponible sur :
 
 ```text
-http://localhost:3001
+http://localhost:3003
 ```
 
-J'utilise le port `3001` en développement local pour éviter un conflit si le port `3000` est déjà utilisé sur mon ordinateur.
+J'utilise le port `3003` en développement local pour éviter un conflit si le port `3000` est déjà utilisé sur mon ordinateur.
 
 ## Base de données
 

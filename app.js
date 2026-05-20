@@ -25,13 +25,41 @@ if (tabs.length && panels.length) {
   });
 }
 
-document.querySelectorAll("form").forEach((form) => {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const message = form.querySelector(".form-message");
+const reservationForm = document.getElementById("reservationForm");
 
-    if (message) {
-      message.textContent = "Votre demande a bien été prise en compte.";
+if (reservationForm) {
+  reservationForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const message = reservationForm.querySelector(".form-message");
+
+    const reservationData = {
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value,
+      email: document.getElementById("email").value,
+      date: document.getElementById("date").value,
+      time: document.getElementById("time").value,
+      guests: Number(document.getElementById("guests").value),
+      allergies: document.getElementById("allergies").value
+    };
+
+    try {
+      const response = await fetch("http://localhost:3003/api/reservations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(reservationData)
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de la réservation");
+      }
+
+      message.textContent = "Votre réservation a bien été enregistrée.";
+      reservationForm.reset();
+    } catch (error) {
+      message.textContent = "Erreur : la réservation n'a pas pu être envoyée.";
     }
   });
-});
+}

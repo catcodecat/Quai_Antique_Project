@@ -2,5 +2,8 @@
   "dependencies": {
     "pdfkit": "^0.18.0",
     "pptxgenjs": "^4.0.1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
