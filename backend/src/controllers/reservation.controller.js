@@ -1,5 +1,29 @@
 const reservationRepository = require('../repositories/reservation.repository');
 
+async function listReservations(req, res) {
+  try {
+    const reservations = await reservationRepository.findAllReservations();
+
+    return res.json({
+      message: 'Liste des reservations',
+      reservations,
+    });
+  } catch (error) {
+    console.error(error);
+
+    if (error.message.includes('DATABASE_URL') || error.code === 'ECONNREFUSED') {
+      return res.status(200).json({
+        message: 'Route GET /api/reservations active, mais la base de donnees n est pas encore disponible',
+        reservations: [],
+      });
+    }
+
+    return res.status(500).json({
+      message: 'Erreur lors de la recuperation des reservations',
+    });
+  }
+}
+
 async function createReservation(req, res) {
   const {
     firstName,
@@ -57,5 +81,6 @@ async function createReservation(req, res) {
 }
 
 module.exports = {
+  listReservations,
   createReservation,
 };

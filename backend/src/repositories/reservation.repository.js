@@ -39,6 +39,27 @@ async function createReservation(reservationData) {
   return result.rows[0];
 }
 
+async function findAllReservations() {
+  const result = await db.query(
+    `SELECT
+      id,
+      first_name AS "firstName",
+      last_name AS "lastName",
+      email,
+      reservation_date AS "date",
+      reservation_time AS "time",
+      guests,
+      allergies,
+      status,
+      created_at AS "createdAt"
+    FROM reservations
+    ORDER BY created_at DESC`,
+  );
+
+  return result.rows;
+}
+
 module.exports = {
   createReservation,
+  findAllReservations,
 };
