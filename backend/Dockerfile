@@ -3,11 +3,8 @@ FROM node:22-alpine
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm ci --omit=dev
 
 COPY src ./src
 
-ARG PORT=3000
-EXPOSE ${PORT}
-
-CMD ["npm", "start"]
+CMD ["node", "src/server.js"]

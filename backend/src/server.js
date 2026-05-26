@@ -3,27 +3,7 @@ require('dotenv').config();
 const app = require('./app');
 const initDatabase = require('./config/initDatabase');
 
-const port = Number(process.env.PORT) || 3000;
-
-function listenOnAvailablePort(portToUse, retries = 5) {
-  const server = app.listen(portToUse, '0.0.0.0');
-
-  server.on('listening', () => {
-    console.log(`API Quai Antique lancee sur le port ${portToUse}`);
-  });
-
-  server.on('error', (error) => {
-    if (error.code === 'EADDRINUSE' && retries > 0) {
-      const nextPort = portToUse + 1;
-      console.error(`Le port ${portToUse} est deja utilise. Nouvel essai sur le port ${nextPort}.`);
-      listenOnAvailablePort(nextPort, retries - 1);
-      return;
-    }
-
-    console.error('Erreur au demarrage du serveur', error);
-    process.exit(1);
-  });
-}
+const PORT = process.env.PORT || 3000;
 
 async function startServer() {
   try {
@@ -33,7 +13,9 @@ async function startServer() {
     console.error(error.message);
   }
 
-  listenOnAvailablePort(port);
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`API Quai Antique lancee sur le port ${PORT}`);
+  });
 }
 
 startServer().catch((error) => {
