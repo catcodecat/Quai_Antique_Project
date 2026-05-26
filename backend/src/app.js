@@ -6,8 +6,20 @@ const reservationRoutes = require('./routes/reservation.routes');
 
 const app = express();
 
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:8080')
+  .split(',')
+  .map((o) => o.trim());
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:8080',
+  origin: (origin, callback) => {
+    // Autorise les requêtes sans origine (curl, Postman, fichiers locaux)
+    // et les origines dans la liste blanche
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS : origine non autorisée — ${origin}`));
+    }
+  },
 }));
 
 app.use(express.json());

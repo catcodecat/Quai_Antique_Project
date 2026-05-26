@@ -44,7 +44,7 @@ if (reservationForm) {
     };
 
     try {
-      const response = await fetch("http://localhost:3003/api/reservations", {
+      const response = await fetch(`${API_BASE_URL}/api/reservations`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

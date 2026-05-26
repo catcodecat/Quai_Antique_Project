@@ -6,7 +6,7 @@ const initDatabase = require('./config/initDatabase');
 const port = Number(process.env.PORT) || 3000;
 
 function listenOnAvailablePort(portToUse, retries = 5) {
-  const server = app.listen(portToUse);
+  const server = app.listen(portToUse, '0.0.0.0');
 
   server.on('listening', () => {
     console.log(`API Quai Antique lancee sur le port ${portToUse}`);
