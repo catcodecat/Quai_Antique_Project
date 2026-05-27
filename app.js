@@ -25,6 +25,108 @@ if (tabs.length && panels.length) {
   });
 }
 
+// --- Navigation : affiche Déconnexion si connecté ---
+function updateNav() {
+  const user = JSON.parse(localStorage.getItem("qaUser") || "null");
+  const navLink = document.querySelector('.main-nav a[href="login.html"]');
+  if (!navLink) return;
+
+  if (user) {
+    navLink.textContent = `${user.firstName} — Déconnexion`;
+    navLink.href = "#";
+    navLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("qaToken");
+      localStorage.removeItem("qaUser");
+      window.location.href = "index.html";
+    });
+  }
+}
+updateNav();
+
+// --- Formulaire d'inscription ---
+const registerForm = document.getElementById("registerForm");
+if (registerForm) {
+  registerForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const message = registerForm.querySelector(".form-message");
+    message.style.color = "";
+    message.textContent = "Inscription en cours…";
+
+    const data = {
+      firstName: document.getElementById("firstname").value.trim(),
+      lastName:  document.getElementById("lastname").value.trim(),
+      email:     document.getElementById("email").value.trim(),
+      password:  document.getElementById("password").value,
+    };
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const payload = await res.json();
+
+      if (!res.ok) {
+        message.style.color = "#c62828";
+        message.textContent = payload.message || "Erreur lors de l'inscription.";
+        return;
+      }
+
+      localStorage.setItem("qaToken", payload.token);
+      localStorage.setItem("qaUser", JSON.stringify(payload.user));
+      message.style.color = "#2e7d32";
+      message.textContent = "Compte créé ! Redirection…";
+      setTimeout(() => { window.location.href = "index.html"; }, 1500);
+    } catch (err) {
+      message.style.color = "#c62828";
+      message.textContent = "Impossible de contacter le serveur.";
+    }
+  });
+}
+
+// --- Formulaire de connexion ---
+const loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const message = loginForm.querySelector(".form-message");
+    message.style.color = "";
+    message.textContent = "Connexion en cours…";
+
+    const data = {
+      email:    document.getElementById("email").value.trim(),
+      password: document.getElementById("password").value,
+    };
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const payload = await res.json();
+
+      if (!res.ok) {
+        message.style.color = "#c62828";
+        message.textContent = payload.message || "Erreur lors de la connexion.";
+        return;
+      }
+
+      localStorage.setItem("qaToken", payload.token);
+      localStorage.setItem("qaUser", JSON.stringify(payload.user));
+      message.style.color = "#2e7d32";
+      message.textContent = "Connexion réussie ! Redirection…";
+      setTimeout(() => { window.location.href = "index.html"; }, 1200);
+    } catch (err) {
+      message.style.color = "#c62828";
+      message.textContent = "Impossible de contacter le serveur.";
+    }
+  });
+}
+
+// --- Formulaire de réservation ---
 const reservationForm = document.getElementById("reservationForm");
 
 if (reservationForm) {

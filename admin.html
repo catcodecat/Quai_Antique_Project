@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administration - Quai Antique</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .admin-wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      .admin-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+
+      .admin-header h2 {
+        margin-bottom: 0;
+        color: var(--primary);
+      }
+
+      .admin-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .count-badge {
+        padding: 4px 14px;
+        border-radius: 20px;
+        background: var(--primary);
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .btn-sm {
+        min-height: 30px;
+        min-width: unset;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      .table-scroll {
+        overflow-x: auto;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: var(--white);
+      }
+
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        min-width: 860px;
+      }
+
+      .admin-table thead th {
+        padding: 11px 14px;
+        background: var(--dark);
+        color: var(--secondary);
+        font-family: "Montserrat", Arial, sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        text-align: left;
+        white-space: nowrap;
+      }
+
+      .admin-table tbody td {
+        padding: 11px 14px;
+        border-top: 1px solid var(--line);
+        vertical-align: top;
+        color: var(--text);
+      }
+
+      .admin-table tbody tr:hover td {
+        background: #faf8f5;
+      }
+
+      .td-name {
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .td-muted {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .td-center {
+        text-align: center;
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .status-pending   { background: #fff3e0; color: #e65100; }
+      .status-confirmed { background: #e8f5e9; color: #2e7d32; }
+      .status-cancelled { background: #ffebee; color: #c62828; }
+
+      .admin-state {
+        padding: 48px 20px;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .admin-state p {
+        margin-bottom: 0;
+        font-size: 15px;
+      }
+
+      .admin-state .error-detail {
+        margin-top: 8px;
+        font-size: 12px;
+        font-family: monospace;
+        color: #c62828;
+      }
+
+      .admin-notice {
+        margin-top: 14px;
+        padding: 10px 14px;
+        border-left: 3px solid var(--primary);
+        background: #fdf8f1;
+        color: var(--muted);
+        font-size: 13px;
+        border-radius: 0 4px 4px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Quai Antique</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="gallery.html">Galerie</a>
+        <a href="menu.html">La carte</a>
+        <a href="reservation.html">Les reservations</a>
+        <a href="login.html">Mon compte</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hero-page">
+        <h1>Administration</h1>
+        <p>Gestion des réservations</p>
+      </section>
+
+      <section class="content-page">
+        <div class="admin-wrapper">
+
+          <div class="admin-header">
+            <h2>Réservations</h2>
+            <div class="admin-controls">
+              <span class="count-badge" id="count-badge">…</span>
+              <button class="btn btn-sm" id="refresh-btn" onclick="loadReservations()">
+                ↺ Actualiser
+              </button>
+            </div>
+          </div>
+
+          <div id="reservations-container">
+            <div class="admin-state">
+              <p>Chargement des réservations…</p>
+            </div>
+          </div>
+
+          <p class="admin-notice">
+            La colonne <strong>Téléphone</strong> affiche « — » car ce champ n'est pas encore
+            collecté par le formulaire de réservation.
+          </p>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <section>
+        <h2>Nos horaires</h2>
+        <p>Du mardi au dimanche 12:00-14:00 18:00-23:00</p>
+      </section>
+      <section>
+        <h2>Quai Antique</h2>
+        <p>5 rue de la route</p>
+        <p>31150 Ville</p>
+        <p>04 01 01 01 01</p>
+      </section>
+      <section>
+        <h2>Contact</h2>
+        <p>contact@quaiantique.com</p>
+      </section>
+    </footer>
+
+    <script src="config.js"></script>
+    <script>
+      function formatDate(isoString) {
+        if (!isoString) return '—';
+        return new Date(isoString).toLocaleDateString('fr-FR');
+      }
+
+      function formatTime(timeStr) {
+        if (!timeStr) return '—';
+        return String(timeStr).slice(0, 5);
+      }
+
+      function formatDateTime(isoString) {
+        if (!isoString) return '—';
+        const d = new Date(isoString);
+        return (
+          d.toLocaleDateString('fr-FR') +
+          ' à ' +
+          d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+        );
+      }
+
+      function statusBadge(status) {
+        const map = {
+          pending:   ['En attente', 'pending'],
+          confirmed: ['Confirmée',  'confirmed'],
+          cancelled: ['Annulée',    'cancelled'],
+        };
+        const [label, cls] = map[status] || [status, 'pending'];
+        return `<span class="status-badge status-${cls}">${label}</span>`;
+      }
+
+      function renderTable(list) {
+        if (list.length === 0) {
+          return `<div class="admin-state"><p>Aucune réservation enregistrée pour l'instant.</p></div>`;
+        }
+
+        const rows = list.map((r) => `
+          <tr>
+            <td class="td-name">${r.lastName || ''} ${r.firstName || ''}</td>
+            <td class="td-muted">${r.email || '—'}</td>
+            <td class="td-muted">—</td>
+            <td>${formatDate(r.date)}</td>
+            <td>${formatTime(r.time)}</td>
+            <td class="td-center">${r.guests}</td>
+            <td class="td-muted">${r.allergies || '—'}</td>
+            <td class="td-muted">${formatDateTime(r.createdAt)}</td>
+            <td>${statusBadge(r.status)}</td>
+          </tr>
+        `).join('');
+
+        return `
+          <div class="table-scroll">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Email</th>
+                  <th>Téléphone</th>
+                  <th>Date</th>
+                  <th>Heure</th>
+                  <th>Pers.</th>
+                  <th>Allergies</th>
+                  <th>Créé le</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${rows}
+              </tbody>
+            </table>
+          </div>
+        `;
+      }
+
+      async function loadReservations() {
+        const container = document.getElementById('reservations-container');
+        const badge = document.getElementById('count-badge');
+
+        container.innerHTML = '<div class="admin-state"><p>Chargement…</p></div>';
+        badge.textContent = '…';
+
+        try {
+          const res = await fetch(`${API_BASE_URL}/api/reservations`);
+          if (!res.ok) throw new Error(`Erreur HTTP ${res.status}`);
+
+          const data = await res.json();
+          const list = data.reservations || [];
+
+          badge.textContent = `${list.length} réservation${list.length !== 1 ? 's' : ''}`;
+          container.innerHTML = renderTable(list);
+        } catch (err) {
+          badge.textContent = 'Erreur';
+          container.innerHTML = `
+            <div class="admin-state">
+              <p>Impossible de charger les réservations.</p>
+              <p class="error-detail">${err.message}</p>
+            </div>
+          `;
+        }
+      }
+
+      loadReservations();
+    </script>
+  </body>
+</html>
