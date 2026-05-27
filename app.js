@@ -78,7 +78,7 @@ if (registerForm) {
       localStorage.setItem("qaUser", JSON.stringify(payload.user));
       message.style.color = "#2e7d32";
       message.textContent = "Compte créé ! Redirection…";
-      setTimeout(() => { window.location.href = "index.html"; }, 1500);
+      setTimeout(() => { window.location.href = "reservation.html"; }, 1500);
     } catch (err) {
       message.style.color = "#c62828";
       message.textContent = "Impossible de contacter le serveur.";
@@ -118,7 +118,7 @@ if (loginForm) {
       localStorage.setItem("qaUser", JSON.stringify(payload.user));
       message.style.color = "#2e7d32";
       message.textContent = "Connexion réussie ! Redirection…";
-      setTimeout(() => { window.location.href = "index.html"; }, 1200);
+      setTimeout(() => { window.location.href = "reservation.html"; }, 1200);
     } catch (err) {
       message.style.color = "#c62828";
       message.textContent = "Impossible de contacter le serveur.";
@@ -130,6 +130,16 @@ if (loginForm) {
 const reservationForm = document.getElementById("reservationForm");
 
 if (reservationForm) {
+  const connectedUser = JSON.parse(localStorage.getItem("qaUser") || "null");
+  if (connectedUser) {
+    const f = document.getElementById("firstName");
+    const l = document.getElementById("lastName");
+    const em = document.getElementById("email");
+    if (f) f.value = connectedUser.firstName || "";
+    if (l) l.value = connectedUser.lastName || "";
+    if (em) em.value = connectedUser.email || "";
+  }
+
   reservationForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
