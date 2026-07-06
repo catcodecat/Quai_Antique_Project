@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Évolution du projet — Quai Antique</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #211817;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      padding: 40px 32px 64px;
+      color: #c5baa4;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 2px solid #3c2e24;
+    }
+
+    header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 13px;
+      color: #5f5a54;
+    }
+
+    header .badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 4px 16px;
+      border-radius: 20px;
+      background: #9b6a22;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .section {
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #9b6a22;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .img-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.5);
+      border: 1px solid #3c2e24;
+    }
+
+    .img-wrap img {
+      width: 100%;
+      display: block;
+    }
+
+    .caption {
+      margin-top: 14px;
+      padding: 14px 18px;
+      background: #3c2e24;
+      border-radius: 8px;
+      border-left: 4px solid #9b6a22;
+    }
+
+    .caption strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .caption p {
+      font-size: 12px;
+      color: #c5baa4;
+      line-height: 1.6;
+    }
+
+    .caption .tags {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .tag-avant  { background: #b71c1c; color: #ffcdd2; }
+    .tag-apres  { background: #1b5e20; color: #c8e6c9; }
+    .tag-git    { background: #3c2e24; color: #c5baa4; border: 1px solid #9b6a22; }
+    .tag-info   { background: #0d47a1; color: #bbdefb; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #3c2e24;
+      margin: 48px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 32px;
+      border-top: 2px solid #3c2e24;
+      font-size: 12px;
+      color: #5f5a54;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Évolution du projet Quai Antique</h1>
+  <p>Comparatifs visuels AVANT → APRÈS · Soutenance DWWM</p>
+  <span class="badge">20 commits · 19 mai → 27 mai 2026</span>
+</header>
+
+<!-- ── 1. CHRONOLOGIE ── -->
+<div class="section">
+  <div class="section-label">
+    <div class="section-num">1</div>
+    <div class="section-title">Chronologie complète du projet</div>
+  </div>
+  <div class="img-wrap">
+    <img src="chronologie.png" alt="Chronologie du projet Quai Antique"/>
+  </div>
+  <div class="caption">
+    <strong>Timeline des 20 commits (19–27 mai 2026)</strong>
+    <p>
+      Vue chronologique de toutes les étapes de développement : site statique → backend Express →
+      déploiement Railway → authentification JWT → dashboard admin. Chaque couleur correspond
+      à un type d'action (feature, fix, backend, déploiement).
+    </p>
+    <div class="tags">
+      <span class="tag tag-git">e243fd5 → cd0d6fa</span>
+      <span class="tag tag-info">9 jours de développement</span>
+      <span class="tag tag-info">5 phases distinctes</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── 2. FORMULAIRE DE RÉSERVATION ── -->
+<div class="section">
+  <div class="section-label">
+    <div class="section-num">2</div>
+    <div class="section-title">Formulaire de réservation — AVANT → APRÈS</div>
+  </div>
+  <div class="img-wrap">
+    <img src="comparatif-reservation.png" alt="Comparatif formulaire de réservation"/>
+  </div>
+  <div class="caption">
+    <strong>De 4 champs sans backend à 7 champs connectés à l'API</strong>
+    <p>
+      <strong>AVANT (commit e243fd5 · 19 mai) :</strong>
+      Le formulaire ne contient que date, heure, nombre de personnes et allergies.
+      Pas de prénom, ni nom, ni email. La soumission affiche un simple message statique,
+      aucune donnée n'est enregistrée nulle part.<br/><br/>
+      <strong>APRÈS (commit a3db5b7 · 20 mai) :</strong>
+      Ajout de prénom, nom, email. Formulaire connecté à l'API Express via <code>fetch()</code>.
+      Les réservations sont réellement stockées en base PostgreSQL Supabase.
+    </p>
+    <div class="tags">
+      <span class="tag tag-avant">AVANT : statique · 4 champs · aucune API</span>
+      <span class="tag tag-apres">APRÈS : 7 champs · fetch() · PostgreSQL</span>
+      <span class="tag tag-git">e243fd5 → a3db5b7</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── 3. CARTE DU RESTAURANT ── -->
+<div class="section">
+  <div class="section-label">
+    <div class="section-num">3</div>
+    <div class="section-title">Carte du restaurant — AVANT → APRÈS</div>
+  </div>
+  <div class="img-wrap">
+    <img src="comparatif-menu.png" alt="Comparatif carte du restaurant"/>
+  </div>
+  <div class="caption">
+    <strong>De placeholders génériques à de vrais plats gastronomiques avec prix</strong>
+    <p>
+      <strong>AVANT (commit e243fd5 · 19 mai) :</strong>
+      Les plats s'appellent "Entrée 1", "Plat 2", "Dessert 1" avec des descriptions
+      génériques et des prix fictifs.<br/><br/>
+      <strong>APRÈS (commit 7bd7efb · 27 mai) :</strong>
+      Vrais intitulés gastronomiques (Velouté de potimarron, Magret de canard, etc.),
+      vraies descriptions et vrais prix (9 €, 24 €, 8 €…).
+    </p>
+    <div class="tags">
+      <span class="tag tag-avant">AVANT : "Entrée 1" · prix fictifs</span>
+      <span class="tag tag-apres">APRÈS : vrais plats + prix réels</span>
+      <span class="tag tag-git">e243fd5 → 7bd7efb</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── 4. ÉTAPE INTERMÉDIAIRE MENU ── -->
+<div class="section">
+  <div class="section-label">
+    <div class="section-num">4</div>
+    <div class="section-title">Carte — Étape intermédiaire (vrais plats, prix manquants)</div>
+  </div>
+  <div class="img-wrap">
+    <img src="menu-v2-intermediaire.png" alt="Carte intermédiaire — vrais plats sans prix"/>
+  </div>
+  <div class="caption">
+    <strong>Commit e3b0d92 · 27 mai · 16h32 — les plats arrivent, les prix pas encore</strong>
+    <p>
+      Il s'est écoulé exactement <strong>1 minute</strong> entre ce commit et le suivant
+      (7bd7efb) qui a ajouté les prix. Cette capture montre l'état intermédiaire :
+      les vrais noms et descriptions des plats sont là, mais les prix affichent encore "— €".
+      Cela illustre un développement incrémental et atomique en Git.
+    </p>
+    <div class="tags">
+      <span class="tag tag-git">e3b0d92 · 16h32</span>
+      <span class="tag tag-info">Vrais plats · prix manquants</span>
+      <span class="tag tag-info">+1 min → commit 7bd7efb ajoute les prix</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── 5. APP.JS ÉVOLUTION ── -->
+<div class="section">
+  <div class="section-label">
+    <div class="section-num">5</div>
+    <div class="section-title">app.js — Évolution en 3 versions</div>
+  </div>
+  <div class="img-wrap">
+    <img src="comparatif-appjs.png" alt="Comparatif app.js 3 versions"/>
+  </div>
+  <div class="caption">
+    <strong>De 37 lignes statiques à 178 lignes avec auth, API et préremplissage</strong>
+    <p>
+      <strong>V1 (19 mai · rouge) :</strong> Seulement les onglets du menu + un handler générique
+      sur tous les formulaires. Aucune logique métier. 37 lignes.<br/><br/>
+      <strong>V2 (20 mai · orange) :</strong> Premier <code>fetch()</code> vers l'API, mais URL hardcodée
+      en <code>localhost:3003</code> — le site Netlify ne peut pas appeler cette URL.<br/><br/>
+      <strong>V3 (27 mai · vert) :</strong> <code>API_BASE_URL</code> depuis config.js,
+      gestion complète auth (register + login + localStorage), updateNav(), préremplissage.
+      178 lignes.
+    </p>
+    <div class="tags">
+      <span class="tag tag-avant">V1 : 37 lignes · statique</span>
+      <span class="tag tag-info">V2 : fetch() localhost (non déployable)</span>
+      <span class="tag tag-apres">V3 : 178 lignes · API_BASE_URL · auth · prefill</span>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── 6. BACKEND ÉVOLUTION ── -->
+<div class="section">
+  <div class="section-label">
+    <div class="section-num">6</div>
+    <div class="section-title">Backend — Évolution des routes et de la base de données</div>
+  </div>
+  <div class="img-wrap">
+    <img src="comparatif-backend.png" alt="Comparatif backend routes et BDD"/>
+  </div>
+  <div class="caption">
+    <strong>De 1 route / 1 table à 5 routes / 2 tables / authentification JWT</strong>
+    <p>
+      <strong>V1 (19 mai · commit 92ce011) :</strong>
+      Seule route <code>POST /api/reservations</code>. Une seule table <code>reservations</code>.
+      Pas d'authentification. Le contrôleur n'a pas de gestion d'erreur avancée.<br/><br/>
+      <strong>FINAL (27 mai · commit cd0d6fa) :</strong>
+      5 routes actives (health + 2 auth + 2 reservations). Table <code>users</code> ajoutée
+      avec <code>password_hash</code> et <code>role</code>. Authentification bcrypt + JWT complète.
+      CORS multi-origine configuré.
+    </p>
+    <div class="tags">
+      <span class="tag tag-avant">V1 : 1 route · 1 table · pas d'auth</span>
+      <span class="tag tag-apres">FINAL : 5 routes · 2 tables · bcrypt · JWT</span>
+      <span class="tag tag-git">92ce011 → cd0d6fa</span>
+      <span class="tag tag-info">Pattern MVC dès le premier commit backend</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Projet Quai Antique · Soutenance DWWM · Larisa Faessel · Juin 2026
+</footer>
+
+</body>
+</html>

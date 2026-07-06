@@ -1,46 +1,93 @@
 # Docker - Quai Antique
 
-## Objectif
+Le projet contient une configuration Docker pour lancer le frontend, le backend et une base PostgreSQL locale.
 
-Pour cette première remise, le projet reste un site statique en HTML, CSS et JavaScript. J'ai quand même ajouté Docker pour pouvoir lancer le site avec un serveur web simple.
+## Fichiers présents
 
-Docker me permet d'avoir une manière plus propre de démarrer le projet, sans dépendre uniquement de l'ouverture directe du fichier `index.html`.
-
-## Fichiers ajoutés
-
-- `Dockerfile` : prépare une image avec Nginx pour servir les fichiers du site.
-- `docker-compose.yml` : lance le service frontend sur le port `8080`.
-- `.dockerignore` : évite de copier des fichiers inutiles dans l'image Docker.
-
-## Commande de lancement
-
-```bash
-docker compose up --build
+```text
+Dockerfile
+docker-compose.yml
+backend/Dockerfile
 ```
 
-Après le lancement, le site doit être accessible ici :
+## Frontend
+
+Le `Dockerfile` racine utilise Nginx :
+
+```dockerfile
+FROM nginx:1.27-alpine
+```
+
+Il copie les pages HTML, `styles.css`, `app.js`, `config.js` et `assets/` dans le dossier servi par Nginx.
+
+Port exposé :
+
+```text
+80
+```
+
+Dans Docker Compose, le frontend est publié sur :
 
 ```text
 http://localhost:8080
 ```
 
-## Commande d'arrêt
+## Backend
+
+Le `backend/Dockerfile` utilise Node.js :
+
+```dockerfile
+FROM node:22-alpine
+```
+
+Il installe les dépendances avec :
 
 ```bash
+npm ci --omit=dev
+```
+
+Puis lance :
+
+```bash
+node src/server.js
+```
+
+Dans `docker-compose.yml`, le backend est construit depuis le dossier réel du projet :
+
+```yaml
+backend:
+  build: ./backend
+```
+
+## Base de données
+
+Le service `database` utilise :
+
+```text
+postgres:16-alpine
+```
+
+Variables locales dans `docker-compose.yml` :
+
+- `POSTGRES_USER`
+- `POSTGRES_PASSWORD`
+- `POSTGRES_DB`
+
+Un volume `postgres_data` conserve les données.
+
+## Variables d'environnement
+
+Pour Docker Compose, les variables de démonstration sont définies dans `docker-compose.yml`.
+
+Pour l'exécution locale sans Docker, le backend utilise `backend/.env`, qui ne doit jamais être versionné.
+
+## Commandes utiles
+
+```bash
+docker compose up --build
 docker compose down
 ```
 
-## Limite actuelle
+## Intérêt pour le DWWM
 
-Docker n'est pas obligatoire pour visualiser le projet, car le site peut aussi être ouvert directement avec `index.html`.
-
-Pour le moment, Docker sert surtout à montrer que je prépare une méthode de lancement plus professionnelle pour la suite du projet.
-
-## Suite prévue
-
-Quand le backend sera ajouté, je pourrai compléter Docker avec :
-
-- un service `backend` ;
-- un service de base de données ;
-- des variables d'environnement ;
-- une configuration plus proche du projet final.
+Docker montre la capacité à préparer un environnement reproductible. Même si la démonstration principale se fait avec Node.js et une base distante comme Supabase, cette configuration aide à expliquer l'industrialisation du projet.

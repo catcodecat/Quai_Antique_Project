@@ -1,44 +1,54 @@
 # Git et GitHub - Quai Antique
 
-## Objectif
+Ce document explique l'utilisation de Git dans le projet et les points à vérifier avant la remise.
 
-J'utilise Git pour garder un historique de mon projet Quai Antique. Cela me permet de suivre les étapes de mon travail et de montrer au professeur comment le projet évolue.
+## Objectifs
 
-GitHub servira ensuite à sauvegarder le projet en ligne et à le partager plus facilement.
+Git permet de :
 
-## État actuel
+- suivre l'évolution du projet ;
+- conserver un historique des changements ;
+- montrer une démarche professionnelle ;
+- faciliter le déploiement depuis un dépôt distant.
 
-Le dépôt Git est initialisé dans le dossier du projet. Un premier commit a été créé pour préparer la première remise.
+## Fichiers sensibles
 
-## Fichiers ignorés
+Le fichier `.gitignore` doit exclure :
 
-J'ai ajouté un fichier `.gitignore` pour éviter d'envoyer certains fichiers inutiles ou sensibles :
+```text
+node_modules/
+.env
+.env.*
+dist/
+build/
+coverage/
+*.log
+```
 
-- `node_modules/`
-- `.env`
-- fichiers de logs ;
-- dossiers de build ;
-- fichiers temporaires ;
-- fichiers propres à l'éditeur ou au système.
+Le fichier `.env.example` peut être versionné car il ne contient pas de secret réel.
 
-## Commandes utilisées
+## Commandes utiles
 
 ```bash
-git init
+git status
 git add .
-git commit -m "Preparation premiere remise Quai Antique"
+git commit -m "docs: update DWWM documentation"
+git log --oneline
 ```
 
-## Utilisation prévue de GitHub
+## Vérifications avant remise
 
-Pour la suite, je prévois de créer un dépôt GitHub, puis d'envoyer mon projet avec :
+- Le dépôt ne contient pas de `.env`.
+- Les documents utiles sont versionnés.
+- Les fichiers générés inutiles ne polluent pas le dépôt.
+- Le `git status` est compréhensible.
+- Le README explique comment lancer le projet.
 
-```bash
-git remote add origin URL_DU_DEPOT
-git branch -M main
-git push -u origin main
-```
+## Intérêt pour le DWWM
 
-## Explication pour la remise
+Git montre la capacité à travailler avec un outil professionnel de versioning. Pendant l'oral, il est utile d'expliquer :
 
-Pour cette première correction, je peux expliquer que Git me sert à garder une trace propre de mon travail. Le fichier `.gitignore` montre aussi que je fais attention à ne pas envoyer les fichiers sensibles comme `.env`.
+- les étapes principales du projet ;
+- les corrections réalisées ;
+- les choix techniques ;
+- la façon dont le projet a évolué.

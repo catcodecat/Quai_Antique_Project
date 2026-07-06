@@ -1,51 +1,58 @@
-# Checklist première remise - Quai Antique
+# Checklist avant remise DWWM
 
-## Avant de présenter le projet
+Cette checklist sert à vérifier le projet avant l'envoi ou la démonstration.
 
-Je vérifie les points suivants avant la première correction :
+## Projet
 
-- les pages HTML principales sont présentes ;
-- le fichier CSS est bien relié aux pages ;
-- le fichier JavaScript est bien relié aux pages ;
-- les images sont présentes dans `assets/images/` ;
-- le README explique le projet avec un ton étudiant ;
-- la documentation backend futur est présente ;
-- la documentation sécurité prévue est présente ;
-- le fichier `.gitignore` est présent ;
-- le fichier `.env.example` est présent ;
-- Docker est documenté ;
-- le projet possède plusieurs commits Git.
+- [ ] Les fichiers de travail sont à la racine du projet.
+- [ ] `backend/` est présent.
+- [ ] `docs/` est à jour.
+- [ ] `dossier-professionel/` contient uniquement les documents DP.
+- [ ] Le projet s'ouvre correctement côté frontend.
 
-## Pages à montrer
+## Backend
 
-- `index.html` : accueil du restaurant.
-- `gallery.html` : galerie.
-- `menu.html` : carte avec onglets.
-- `reservation.html` : formulaire de réservation.
-- `login.html` : connexion.
-- `register.html` : inscription.
+- [ ] `npm install` exécuté dans `backend/`.
+- [ ] `npm run dev` démarre le serveur.
+- [ ] `GET /api/health` répond.
+- [ ] `POST /api/auth/register` fonctionne.
+- [ ] `POST /api/auth/login` fonctionne.
+- [ ] `POST /api/reservations` fonctionne.
+- [ ] `GET /api/reservations` refuse les visiteurs non authentifiés.
+- [ ] `GET /api/reservations` refuse les utilisateurs non admin.
+- [ ] `GET /api/reservations` répond pour un admin.
 
-## Points à expliquer au professeur
+## Sécurité
 
-Je peux expliquer que cette première version sert à montrer l'interface du site. Le projet n'est pas encore terminé, mais la base visuelle est en place.
+- [ ] `.env` n'est pas versionné.
+- [ ] `JWT_SECRET` existe en environnement.
+- [ ] Aucun secret réel n'est dans le code.
+- [ ] Les mots de passe sont hachés.
+- [ ] Les routes admin sont protégées.
+- [ ] Les requêtes SQL sont paramétrées.
+- [ ] Helmet et rate limit sont activés.
 
-Je peux aussi expliquer que le backend, la base de données et la sécurité sont prévus dans la suite, et que j'ai préparé des documents pour montrer mon organisation.
+## Documentation
 
-## Points importants à ne pas oublier
+- [ ] `api-routes.md` correspond au code.
+- [ ] `architecture.md` correspond au projet.
+- [ ] `auth-flow.md` explique JWT et admin.
+- [ ] `erd.md` correspond aux tables actuelles.
+- [ ] `mvc.md` correspond à la structure backend.
+- [ ] `security.md` est prêt pour l'oral.
 
-- Le projet reste volontairement en HTML/CSS/JS pour cette première remise.
-- React/Vite n'est pas encore ajouté.
-- Le backend n'est pas encore développé.
-- Les formulaires ne sauvegardent pas encore les données.
-- La sécurité réelle sera ajoutée avec le backend.
+## Soutenance
 
-## Prochaine étape après la correction
+- [ ] Une démonstration utilisateur est prête.
+- [ ] Une démonstration admin est prête.
+- [ ] Un compte admin existe dans la base.
+- [ ] Les captures d'écran importantes sont prêtes.
+- [ ] Le Dossier Professionnel est rempli avec des exemples du projet.
 
-Après le retour du professeur, je pourrai améliorer le projet étape par étape :
+## Points à ne pas modifier juste avant l'examen
 
-1. corriger les remarques ;
-2. mieux organiser le frontend si nécessaire ;
-3. créer le backend Express ;
-4. ajouter la base de données ;
-5. connecter les formulaires ;
-6. ajouter l'espace administrateur.
+- Ne pas changer la structure des routes.
+- Ne pas changer le secret JWT si une démonstration est déjà préparée.
+- Ne pas modifier la base sans sauvegarde.
+- Ne pas refactorer le frontend au dernier moment.
+- Ne pas ajouter de framework sans nécessité.

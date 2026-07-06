@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 700" width="980" height="700" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="980" height="700" fill="#f7f7f7" rx="12"/>
+
+  <!-- Title -->
+  <text x="490" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#3c2e24" letter-spacing="1">Flux d'Authentification — Quai Antique</text>
+  <text x="490" y="58" text-anchor="middle" font-size="12" fill="#5f5a54">Inscription · Connexion · Session · Préremplissage réservation</text>
+
+  <!-- ════════ LANE HEADERS ════════ -->
+  <rect x="20" y="70" width="150" height="610" rx="8" fill="#3c2e24" opacity="0.06"/>
+  <rect x="180" y="70" width="170" height="610" rx="8" fill="#9b6a22" opacity="0.06"/>
+  <rect x="360" y="70" width="160" height="610" rx="8" fill="#211817" opacity="0.06"/>
+  <rect x="530" y="70" width="160" height="610" rx="8" fill="#3ecf8e" opacity="0.06"/>
+  <rect x="700" y="70" width="260" height="610" rx="8" fill="#7c3fe4" opacity="0.06"/>
+
+  <text x="95" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#3c2e24">Navigateur</text>
+  <text x="265" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#9b6a22">Express API</text>
+  <text x="440" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#211817">bcrypt / JWT</text>
+  <text x="610" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#3ecf8e">PostgreSQL</text>
+  <text x="830" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#7c3fe4">localStorage</text>
+
+  <!-- Separator lines -->
+  <line x1="20" y1="100" x2="960" y2="100" stroke="#e4ded5" stroke-width="1.5"/>
+
+  <!-- ════════ SECTION A — REGISTER ════════ -->
+  <rect x="28" y="108" width="930" height="24" rx="5" fill="#3c2e24"/>
+  <text x="48" y="124" font-size="12" font-weight="700" fill="#ffffff">A — INSCRIPTION (register)</text>
+
+  <!-- Step 1 : Form -->
+  <rect x="28" y="140" width="134" height="52" rx="8" fill="#ffffff" stroke="#3c2e24" stroke-width="1.5"/>
+  <text x="95" y="160" text-anchor="middle" font-size="11" font-weight="600" fill="#3c2e24">register.html</text>
+  <text x="95" y="175" text-anchor="middle" font-size="10" fill="#5f5a54">prénom · nom</text>
+  <text x="95" y="187" text-anchor="middle" font-size="10" fill="#5f5a54">email · password</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="162" y1="166" x2="186" y2="166" stroke="#9b6a22" stroke-width="2"/>
+  <polygon points="184,161 194,166 184,171" fill="#9b6a22"/>
+  <text x="174" y="158" text-anchor="middle" font-size="9" fill="#9b6a22">POST</text>
+
+  <!-- Step 2 : Controller -->
+  <rect x="194" y="140" width="148" height="64" rx="8" fill="#ffffff" stroke="#9b6a22" stroke-width="1.5"/>
+  <text x="268" y="160" text-anchor="middle" font-size="11" font-weight="600" fill="#9b6a22">auth.controller</text>
+  <text x="268" y="175" text-anchor="middle" font-size="10" fill="#5f5a54">register()</text>
+  <text x="268" y="188" text-anchor="middle" font-size="10" fill="#5f5a54">validation champs</text>
+  <text x="268" y="200" text-anchor="middle" font-size="10" fill="#5f5a54">email unique ?</text>
+
+  <!-- Arrow 2→3 bcrypt -->
+  <line x1="342" y1="166" x2="366" y2="166" stroke="#211817" stroke-width="2"/>
+  <polygon points="364,161 374,166 364,171" fill="#211817"/>
+  <text x="354" y="158" text-anchor="middle" font-size="9" fill="#211817">hash</text>
+
+  <!-- Step 3 : bcrypt -->
+  <rect x="374" y="140" width="130" height="52" rx="8" fill="#ffffff" stroke="#211817" stroke-width="1.5"/>
+  <text x="439" y="160" text-anchor="middle" font-size="11" font-weight="600" fill="#211817">bcrypt.hash</text>
+  <text x="439" y="175" text-anchor="middle" font-size="10" fill="#5f5a54">password</text>
+  <text x="439" y="187" text-anchor="middle" font-size="10" fill="#9b6a22">10 rounds</text>
+
+  <!-- Arrow 3→4 SQL -->
+  <line x1="504" y1="166" x2="534" y2="166" stroke="#3ecf8e" stroke-width="2"/>
+  <polygon points="532,161 542,166 532,171" fill="#3ecf8e"/>
+  <text x="519" y="158" text-anchor="middle" font-size="9" fill="#3ecf8e">INSERT</text>
+
+  <!-- Step 4 : DB -->
+  <rect x="542" y="140" width="134" height="52" rx="8" fill="#ffffff" stroke="#3ecf8e" stroke-width="1.5"/>
+  <text x="609" y="160" text-anchor="middle" font-size="11" font-weight="600" fill="#3ecf8e">users</text>
+  <text x="609" y="175" text-anchor="middle" font-size="10" fill="#5f5a54">INSERT user</text>
+  <text x="609" y="187" text-anchor="middle" font-size="10" fill="#5f5a54">RETURNING id, role</text>
+
+  <!-- Arrow 4→5 JWT -->
+  <line x1="676" y1="166" x2="700" y2="166" stroke="#7c3fe4" stroke-width="2"/>
+  <polygon points="698,161 708,166 698,171" fill="#7c3fe4"/>
+  <text x="688" y="158" text-anchor="middle" font-size="9" fill="#7c3fe4">sign</text>
+
+  <!-- Step 5 : JWT -->
+  <rect x="708" y="140" width="234" height="64" rx="8" fill="#ffffff" stroke="#7c3fe4" stroke-width="1.5"/>
+  <text x="825" y="160" text-anchor="middle" font-size="11" font-weight="600" fill="#7c3fe4">jwt.sign()</text>
+  <text x="825" y="175" text-anchor="middle" font-size="10" fill="#5f5a54">{ userId, email, role }</text>
+  <text x="825" y="188" text-anchor="middle" font-size="10" fill="#9b6a22">JWT_SECRET · expiresIn: 7d</text>
+  <text x="825" y="200" text-anchor="middle" font-size="10" fill="#5f5a54">→ token (string)</text>
+
+  <!-- Response arrow back to browser -->
+  <path d="M 825 204 Q 825 230 490 230 Q 155 230 95 215" stroke="#9b6a22" stroke-width="2" fill="none" stroke-dasharray="5,3"/>
+  <polygon points="97,210 90,220 100,218" fill="#9b6a22"/>
+  <rect x="370" y="218" width="130" height="20" rx="4" fill="#fdf8f1"/>
+  <text x="435" y="232" text-anchor="middle" font-size="9" fill="#9b6a22">201 · { token, user }</text>
+
+  <!-- Store to localStorage -->
+  <line x1="162" y1="215" x2="712" y2="215" stroke="#7c3fe4" stroke-width="1.5" stroke-dasharray="5,3" opacity="0.5"/>
+  <rect x="708" y="208" width="234" height="34" rx="6" fill="#ffffff" stroke="#7c3fe4" stroke-width="1.5"/>
+  <text x="825" y="222" text-anchor="middle" font-size="10" font-weight="600" fill="#7c3fe4">localStorage.setItem</text>
+  <text x="825" y="235" text-anchor="middle" font-size="10" fill="#5f5a54">qaToken · qaUser</text>
+
+  <!-- Redirect -->
+  <rect x="28" y="248" width="134" height="28" rx="6" fill="#9b6a22"/>
+  <text x="95" y="266" text-anchor="middle" font-size="11" font-weight="600" fill="#ffffff">→ reservation.html</text>
+
+  <!-- ════════ SECTION B — LOGIN ════════ -->
+  <rect x="28" y="288" width="930" height="24" rx="5" fill="#9b6a22"/>
+  <text x="48" y="304" font-size="12" font-weight="700" fill="#ffffff">B — CONNEXION (login)</text>
+
+  <!-- Step B1 -->
+  <rect x="28" y="320" width="134" height="52" rx="8" fill="#ffffff" stroke="#3c2e24" stroke-width="1.5"/>
+  <text x="95" y="340" text-anchor="middle" font-size="11" font-weight="600" fill="#3c2e24">login.html</text>
+  <text x="95" y="355" text-anchor="middle" font-size="10" fill="#5f5a54">email</text>
+  <text x="95" y="367" text-anchor="middle" font-size="10" fill="#5f5a54">password</text>
+
+  <line x1="162" y1="346" x2="186" y2="346" stroke="#9b6a22" stroke-width="2"/>
+  <polygon points="184,341 194,346 184,351" fill="#9b6a22"/>
+  <text x="174" y="338" text-anchor="middle" font-size="9" fill="#9b6a22">POST</text>
+
+  <!-- Step B2 -->
+  <rect x="194" y="320" width="148" height="64" rx="8" fill="#ffffff" stroke="#9b6a22" stroke-width="1.5"/>
+  <text x="268" y="340" text-anchor="middle" font-size="11" font-weight="600" fill="#9b6a22">auth.controller</text>
+  <text x="268" y="355" text-anchor="middle" font-size="10" fill="#5f5a54">login()</text>
+  <text x="268" y="368" text-anchor="middle" font-size="10" fill="#5f5a54">findUserByEmail</text>
+  <text x="268" y="380" text-anchor="middle" font-size="10" fill="#c62828">user introuvable → 401</text>
+
+  <!-- Arrow B2→DB -->
+  <line x1="342" y1="360" x2="534" y2="360" stroke="#3ecf8e" stroke-width="2"/>
+  <polygon points="532,355 542,360 532,365" fill="#3ecf8e"/>
+  <text x="438" y="352" text-anchor="middle" font-size="9" fill="#3ecf8e">SELECT WHERE email=$1</text>
+
+  <!-- DB block B -->
+  <rect x="542" y="320" width="134" height="52" rx="8" fill="#ffffff" stroke="#3ecf8e" stroke-width="1.5"/>
+  <text x="609" y="340" text-anchor="middle" font-size="11" font-weight="600" fill="#3ecf8e">users</text>
+  <text x="609" y="355" text-anchor="middle" font-size="10" fill="#5f5a54">SELECT user</text>
+  <text x="609" y="367" text-anchor="middle" font-size="10" fill="#5f5a54">→ passwordHash</text>
+
+  <!-- Arrow DB→bcrypt.compare -->
+  <line x1="542" y1="360" x2="504" y2="410" stroke="#211817" stroke-width="2" stroke-dasharray="4,2"/>
+  <polygon points="500,408 506,418 512,408" fill="#211817"/>
+
+  <!-- bcrypt.compare -->
+  <rect x="374" y="412" width="130" height="52" rx="8" fill="#ffffff" stroke="#211817" stroke-width="1.5"/>
+  <text x="439" y="432" text-anchor="middle" font-size="11" font-weight="600" fill="#211817">bcrypt.compare</text>
+  <text x="439" y="447" text-anchor="middle" font-size="10" fill="#5f5a54">password reçu</text>
+  <text x="439" y="459" text-anchor="middle" font-size="10" fill="#5f5a54">vs passwordHash</text>
+
+  <!-- Error path -->
+  <line x1="374" y1="448" x2="200" y2="448" stroke="#c62828" stroke-width="1.5" stroke-dasharray="4,2"/>
+  <rect x="60" y="437" width="134" height="22" rx="5" fill="#ffebee" stroke="#c62828" stroke-width="1"/>
+  <text x="127" y="452" text-anchor="middle" font-size="10" fill="#c62828">invalide → 401</text>
+
+  <!-- JWT B -->
+  <line x1="504" y1="438" x2="700" y2="346" stroke="#7c3fe4" stroke-width="2"/>
+  <polygon points="698,341 708,346 700,354" fill="#7c3fe4"/>
+  <text x="610" y="390" text-anchor="middle" font-size="9" fill="#7c3fe4">valide → jwt.sign()</text>
+
+  <!-- JWT block B -->
+  <rect x="708" y="320" width="234" height="64" rx="8" fill="#ffffff" stroke="#7c3fe4" stroke-width="1.5"/>
+  <text x="825" y="340" text-anchor="middle" font-size="11" font-weight="600" fill="#7c3fe4">jwt.sign()</text>
+  <text x="825" y="355" text-anchor="middle" font-size="10" fill="#5f5a54">{ userId, email, role }</text>
+  <text x="825" y="368" text-anchor="middle" font-size="10" fill="#9b6a22">JWT_SECRET · 7d</text>
+  <text x="825" y="380" text-anchor="middle" font-size="10" fill="#5f5a54">→ 200 · { token, user }</text>
+
+  <!-- localStorage B -->
+  <rect x="708" y="394" width="234" height="34" rx="6" fill="#ffffff" stroke="#7c3fe4" stroke-width="1.5"/>
+  <text x="825" y="408" text-anchor="middle" font-size="10" font-weight="600" fill="#7c3fe4">localStorage.setItem</text>
+  <text x="825" y="421" text-anchor="middle" font-size="10" fill="#5f5a54">qaToken · qaUser</text>
+
+  <!-- Redirect B -->
+  <line x1="708" y1="411" x2="172" y2="411" stroke="#9b6a22" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="28" y="400" width="138" height="24" rx="6" fill="#9b6a22"/>
+  <text x="97" y="416" text-anchor="middle" font-size="11" font-weight="600" fill="#ffffff">→ reservation.html</text>
+
+  <!-- ════════ SECTION C — PREFILL ════════ -->
+  <rect x="28" y="478" width="930" height="24" rx="5" fill="#3ecf8e"/>
+  <text x="48" y="494" font-size="12" font-weight="700" fill="#3c2e24">C — PRÉREMPLISSAGE du formulaire de réservation</text>
+
+  <rect x="28" y="510" width="134" height="64" rx="8" fill="#ffffff" stroke="#3c2e24" stroke-width="1.5"/>
+  <text x="95" y="530" text-anchor="middle" font-size="11" font-weight="600" fill="#3c2e24">reservation.html</text>
+  <text x="95" y="545" text-anchor="middle" font-size="10" fill="#5f5a54">chargement page</text>
+  <text x="95" y="558" text-anchor="middle" font-size="10" fill="#5f5a54">app.js exécuté</text>
+  <text x="95" y="570" text-anchor="middle" font-size="10" fill="#5f5a54">updateNav()</text>
+
+  <!-- Arrow to localStorage read -->
+  <line x1="162" y1="542" x2="706" y2="542" stroke="#7c3fe4" stroke-width="2"/>
+  <polygon points="704,537 714,542 704,547" fill="#7c3fe4"/>
+  <text x="440" y="534" text-anchor="middle" font-size="9" fill="#7c3fe4">localStorage.getItem("qaUser")</text>
+
+  <rect x="708" y="518" width="234" height="48" rx="8" fill="#ffffff" stroke="#7c3fe4" stroke-width="1.5"/>
+  <text x="825" y="536" text-anchor="middle" font-size="11" font-weight="600" fill="#7c3fe4">qaUser trouvé ?</text>
+  <text x="825" y="551" text-anchor="middle" font-size="10" fill="#5f5a54">OUI → firstName, lastName, email</text>
+  <text x="825" y="563" text-anchor="middle" font-size="10" fill="#5f5a54">NON → champs vides</text>
+
+  <!-- Arrow back to form prefill -->
+  <line x1="708" y1="560" x2="170" y2="600" stroke="#3ecf8e" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="166,597 162,607 172,604" fill="#3ecf8e"/>
+
+  <rect x="28" y="590" width="134" height="52" rx="8" fill="#3ecf8e" opacity="0.15" stroke="#3ecf8e" stroke-width="1.5"/>
+  <text x="95" y="612" text-anchor="middle" font-size="11" font-weight="600" fill="#3c2e24">Formulaire</text>
+  <text x="95" y="627" text-anchor="middle" font-size="10" fill="#5f5a54">prérempli</text>
+  <text x="95" y="638" text-anchor="middle" font-size="10" fill="#9b6a22">prêt à envoyer</text>
+
+  <!-- Nav display -->
+  <rect x="220" y="590" width="180" height="36" rx="8" fill="#3c2e24" opacity="0.9"/>
+  <text x="310" y="605" text-anchor="middle" font-size="10" font-weight="600" fill="#c5baa4">Navigation</text>
+  <text x="310" y="620" text-anchor="middle" font-size="10" fill="#ffffff">Prénom — Déconnexion</text>
+
+</svg>

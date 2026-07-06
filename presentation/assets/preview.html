@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Diagrammes — Quai Antique</title>
+  <style>
+    body { background: #211817; font-family: 'Segoe UI', Arial, sans-serif; padding: 32px; margin: 0; }
+    h1 { color: #c5baa4; text-align: center; font-size: 22px; margin-bottom: 8px; }
+    p.sub { color: #5f5a54; text-align: center; font-size: 13px; margin-bottom: 40px; }
+    .diagram { margin-bottom: 48px; }
+    .diagram h2 { color: #9b6a22; font-size: 16px; margin-bottom: 12px; padding-left: 4px; border-left: 4px solid #9b6a22; padding-left: 12px; }
+    .diagram img { width: 100%; max-width: 960px; display: block; margin: 0 auto; border-radius: 10px; box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+    .tip { background: #3c2e24; color: #c5baa4; font-size: 12px; padding: 10px 16px; border-radius: 6px; max-width: 960px; margin: 10px auto 0; }
+  </style>
+</head>
+<body>
+  <h1>Diagrammes techniques — Projet Quai Antique</h1>
+  <p class="sub">Pour intégration dans la présentation DWWM · SVG vectoriel · compatible PowerPoint / PDF</p>
+
+  <div class="diagram">
+    <h2>1. ERD — Base de données</h2>
+    <img src="erd.svg" alt="ERD Base de données Quai Antique"/>
+    <p class="tip">Tables : <strong>users</strong> (7 colonnes, bcrypt hash, rôles) et <strong>reservations</strong> (10 colonnes, statuts). Relation user_id FK prévue en v2.</p>
+  </div>
+
+  <div class="diagram">
+    <h2>2. Architecture globale</h2>
+    <img src="architecture.svg" alt="Architecture Netlify Railway Supabase"/>
+    <p class="tip">Flux complet : Netlify (frontend statique) → Railway (API Express) → Supabase (PostgreSQL). CI/CD automatique depuis GitHub.</p>
+  </div>
+
+  <div class="diagram">
+    <h2>3. Flux d'authentification JWT</h2>
+    <img src="auth-flow.svg" alt="Flux authentification JWT"/>
+    <p class="tip">3 phases : inscription (bcrypt + JWT + localStorage), connexion (compare + JWT), préremplissage réservation (lecture localStorage).</p>
+  </div>
+
+  <div class="diagram">
+    <h2>4. Pattern MVC — Backend</h2>
+    <img src="mvc.svg" alt="Pattern MVC backend"/>
+    <p class="tip">Routes → Controllers → Repositories → PostgreSQL. Chaque couche a un rôle unique. Middlewares JWT prévus mais non encore implémentés.</p>
+  </div>
+</body>
+</html>

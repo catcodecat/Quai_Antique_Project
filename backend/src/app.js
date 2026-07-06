@@ -1,11 +1,21 @@
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 
 const healthRoutes = require('./routes/health.routes');
 const reservationRoutes = require('./routes/reservation.routes');
 const authRoutes = require('./routes/auth.routes');
 
 const app = express();
+
+app.use(helmet());
+app.use(rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+}));
 
 const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:8080')
   .split(',')
@@ -23,7 +33,7 @@ app.use(cors({
   },
 }));
 
-app.use(express.json());
+app.use(express.json({ limit: '10kb' }));
 
 app.use('/api/health', healthRoutes);
 app.use('/api/auth', authRoutes);

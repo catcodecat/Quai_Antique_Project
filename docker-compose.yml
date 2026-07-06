@@ -13,6 +13,7 @@ services:
       PORT: 3000
       CORS_ORIGIN: http://localhost:8080
       DATABASE_URL: postgresql://quai_user:quai_password@database:5432/quai_antique
+      JWT_SECRET: change_this_secret_in_real_project
     depends_on:
       database:
         condition: service_healthy

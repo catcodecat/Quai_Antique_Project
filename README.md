@@ -1,215 +1,213 @@
 # Quai Antique
 
-## Présentation du projet
+Site web du restaurant gastronomique fictif **Quai Antique**, réalisé dans le cadre du Titre Professionnel **Développeur Web et Web Mobile (DWWM - RNCP 37674)**.
 
-Je réalise ce projet dans le cadre de ma formation. L'objectif est de créer le site web du restaurant fictif **Quai Antique**, avec une première version visible par le professeur et une base claire pour continuer le développement.
+Le projet présente une application web complète : site vitrine, formulaire de réservation connecté à une API, authentification utilisateur, tableau d'administration et base PostgreSQL.
 
-Pour le moment, le projet est surtout une maquette fonctionnelle en HTML, CSS et JavaScript. Il présente les pages principales du site : accueil, galerie, carte, réservation, connexion et inscription.
+## Fonctionnalités
 
-## Contexte pédagogique
+- Page d'accueil du restaurant.
+- Galerie d'images.
+- Carte avec onglets JavaScript.
+- Formulaire de réservation connecté au backend.
+- Inscription et connexion utilisateur.
+- Authentification par JWT.
+- Préremplissage du formulaire de réservation pour un utilisateur connecté.
+- Tableau d'administration pour consulter les réservations.
+- Protection de la liste des réservations par rôle `admin`.
+- Documentation technique dans le dossier `docs/`.
 
-Ce projet me permet de travailler plusieurs points importants :
+## Technologies
 
-- organiser un petit projet web ;
-- créer des pages HTML structurées ;
-- mettre en place un style responsive avec CSS ;
-- ajouter un peu d'interactivité avec JavaScript ;
-- préparer une documentation simple pour expliquer mon travail ;
-- réfléchir à la suite du projet avec un backend, une base de données, Docker et la sécurité.
+### Frontend
 
-## Objectifs
+- HTML5
+- CSS3
+- JavaScript vanilla
+- Fichiers statiques : `index.html`, `gallery.html`, `menu.html`, `reservation.html`, `login.html`, `register.html`, `admin.html`
 
-Les objectifs du site sont :
+### Backend
 
-- présenter le restaurant Quai Antique ;
-- afficher une galerie d'images ;
-- afficher une carte avec entrées, plats et desserts ;
-- proposer un formulaire de réservation ;
-- préparer un espace utilisateur avec connexion et inscription ;
-- prévoir plus tard un espace administrateur.
+- Node.js
+- Express
+- Architecture MVC : routes, middlewares, controllers, repositories
+- PostgreSQL avec le package `pg`
+- Variables d'environnement avec `dotenv`
 
-## Technologies utilisées
+### Sécurité
 
-Pour cette première version, j'utilise :
-
-- **HTML5** pour la structure des pages ;
-- **CSS3** pour le style, les grilles, les flexbox et l'adaptation mobile ;
-- **JavaScript** pour les onglets du menu et les messages après les formulaires ;
-- **Docker** avec Nginx pour pouvoir lancer le site statique dans un conteneur ;
-- **Node.js** uniquement pour les scripts de génération de présentation déjà présents dans le projet.
-
-Le frontend n'est pas encore en React/Vite. Pour la suite, je prévois de migrer progressivement vers React + Vite pour mieux organiser les composants et les pages.
+- Hachage des mots de passe avec `bcryptjs`.
+- JWT signé avec `JWT_SECRET`.
+- Middleware `authenticateToken`.
+- Middleware `requireAdmin`.
+- Protection de `GET /api/reservations` par JWT et rôle `admin`.
+- Validation backend des réservations.
+- Requêtes SQL paramétrées.
+- Helmet pour les en-têtes HTTP de sécurité.
+- Express Rate Limit.
+- Limite du body JSON à `10kb`.
+- `.env` ignoré par Git.
 
 ## Structure du projet
 
 ```text
 Quai_Antique_Project/
-├── assets/
-│   └── images/
-├── presentation/
-│   ├── screenshots/
-│   ├── explanation.md
-│   └── fichiers de présentation
-├── docs/
-│   └── audit-premiere-remise.md
-├── app.js
-├── gallery.html
 ├── index.html
-├── login.html
+├── gallery.html
 ├── menu.html
-├── register.html
 ├── reservation.html
+├── login.html
+├── register.html
+├── admin.html
+├── app.js
+├── config.js
 ├── styles.css
+├── assets/
+├── backend/
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── railway.json
+│   ├── Dockerfile
+│   └── src/
+│       ├── app.js
+│       ├── server.js
+│       ├── config/
+│       ├── controllers/
+│       ├── middlewares/
+│       ├── repositories/
+│       └── routes/
+├── docs/
+├── presentation/
+├── screens/
+├── dossier-professionel/
 ├── Dockerfile
 ├── docker-compose.yml
 ├── package.json
 └── README.md
 ```
 
-## Installation
+## Routes API
 
-Pour ouvrir le projet sans Docker, il suffit de cloner ou télécharger le dossier, puis d'ouvrir le fichier `index.html` dans un navigateur.
+| Méthode | Route | Authentification | Description |
+|---|---|---|---|
+| GET | `/api/health` | Non | Vérifier que l'API répond |
+| POST | `/api/auth/register` | Non | Créer un compte utilisateur |
+| POST | `/api/auth/login` | Non | Se connecter et recevoir un JWT |
+| POST | `/api/reservations` | Non | Créer une réservation |
+| GET | `/api/reservations` | JWT + rôle `admin` | Lister les réservations |
 
-Si les dépendances Node sont nécessaires pour les fichiers de présentation :
+## Base de données
+
+Le projet utilise PostgreSQL. En local ou en production, la connexion est fournie par la variable d'environnement `DATABASE_URL`.
+
+Le backend initialise deux tables si elles n'existent pas :
+
+- `users`
+- `reservations`
+
+Les requêtes SQL sont centralisées dans les repositories et utilisent des paramètres (`$1`, `$2`, etc.) pour réduire le risque d'injection SQL.
+
+## Variables d'environnement backend
+
+Créer un fichier `backend/.env` à partir de `backend/.env.example`.
+
+Exemple de variables attendues :
+
+```text
+NODE_ENV=development
+PORT=3003
+CORS_ORIGIN=http://localhost:8080
+DATABASE_URL=postgresql://...
+JWT_SECRET=...
+```
+
+Le fichier `.env` réel ne doit jamais être versionné. Il contient les informations sensibles comme `DATABASE_URL` et `JWT_SECRET`.
+
+## Installation et lancement
+
+### Frontend
+
+Le frontend est statique. Il peut être ouvert directement dans le navigateur :
+
+```text
+index.html
+```
+
+Il peut aussi être servi avec un serveur statique si nécessaire.
+
+### Backend
 
 ```bash
+cd backend
 npm install
+npm run dev
 ```
 
-## Lancement du frontend
-
-Version simple :
+API locale :
 
 ```text
-Ouvrir index.html dans le navigateur.
+http://localhost:3003
 ```
 
-Les autres pages sont accessibles depuis le menu de navigation.
+### Base PostgreSQL
 
-## Lancement du backend
+Le projet peut fonctionner avec une base distante comme Supabase. Il n'est pas obligatoire d'installer PostgreSQL localement si `DATABASE_URL` pointe vers une base distante accessible.
 
-Le backend n'est pas encore développé dans cette première version.
+## Administration
 
-Pour la suite du projet, je prévois une architecture simple avec **Node.js** et **Express** :
-
-- routes API pour les réservations ;
-- routes API pour les menus et les plats ;
-- inscription et connexion utilisateur ;
-- authentification avec JWT ou session ;
-- espace administrateur pour gérer les menus, horaires et réservations.
-
-## Lancement avec Docker
-
-Docker sert ici à lancer le site statique dans un environnement plus propre, avec un serveur Nginx.
-
-```bash
-docker compose up --build
-```
-
-Le site sera disponible sur :
+La page `admin.html` utilise le token stocké côté navigateur pour appeler :
 
 ```text
-http://localhost:8080
+GET /api/reservations
 ```
 
-Pour arrêter :
+Cette route est protégée côté backend :
 
-```bash
-docker compose down
+```js
+router.get('/', authenticateToken, requireAdmin, listReservations);
 ```
 
-## Base de données prévue
+Un utilisateur doit donc posséder le rôle `admin` pour consulter la liste des réservations.
 
-La base de données n'est pas encore créée. Pour la suite, je prévois les tables suivantes :
+## Documentation
 
-- `utilisateurs` : informations des clients et administrateurs ;
-- `reservations` : date, heure, nombre de personnes, allergies, utilisateur lié ;
-- `menus` : menus proposés par le restaurant ;
-- `plats` : entrées, plats, desserts, prix et description ;
-- `horaires` : jours et heures d'ouverture ;
-- `avis` : avis laissés par les clients.
+Les documents techniques sont dans `docs/` :
 
-Relations prévues :
+- `architecture.md` : architecture globale.
+- `api-routes.md` : documentation des routes API.
+- `auth-flow.md` : flux d'authentification JWT.
+- `mvc.md` : organisation backend.
+- `erd.md` : modèle de base de données.
+- `security.md` : mesures de sécurité.
+- `evolution-du-projet.md` : évolution du projet.
 
-- un utilisateur peut avoir plusieurs réservations ;
-- un menu peut contenir plusieurs plats ;
-- un avis peut être lié à un utilisateur ;
-- les horaires peuvent être utilisés pour contrôler les créneaux de réservation.
+Ces documents servent à préparer la soutenance DWWM et le Dossier Professionnel.
 
-## Sécurité prévue
+## Limites connues
 
-La sécurité n'est pas encore complète car le backend n'est pas encore présent. Pour la suite, je dois prévoir :
-
-- hash des mots de passe avec `bcrypt` ;
-- authentification avec JWT ou session ;
-- variables d'environnement avec un fichier `.env` non envoyé sur GitHub ;
-- validation des formulaires côté frontend et backend ;
-- configuration CORS ;
-- protection contre les injections SQL ou NoSQL ;
-- gestion des rôles utilisateur et administrateur ;
-- vérification que les données sensibles ne sont pas dans le dépôt GitHub.
-
-J'ai aussi préparé un document plus détaillé ici : `docs/securite-prevue.md`.
-
-## Backend futur
-
-Le backend n'est pas encore codé pour cette première remise. J'ai préparé une documentation séparée pour expliquer l'architecture prévue, les routes API et l'organisation future : `docs/backend-futur.md`.
-
-## GitHub
-
-Le projet doit être versionné avec Git. J'ai ajouté un fichier `.gitignore` pour éviter d'envoyer les fichiers inutiles ou sensibles, comme `node_modules`, `.env` ou les dossiers de build.
-
-Pour initialiser le dépôt :
-
-```bash
-git init
-git add .
-git commit -m "Initialisation du projet Quai Antique"
-```
-
-Ensuite, je pourrai créer un dépôt GitHub et pousser le projet dessus.
-
-## État actuel du projet
-
-Actuellement, j'ai développé la partie visible du site avec les pages principales. La navigation fonctionne, les pages sont reliées entre elles, la carte utilise des onglets en JavaScript et les formulaires affichent un message après l'envoi.
-
-Ce qui fonctionne :
-
-- page d'accueil ;
-- galerie ;
-- carte avec catégories ;
-- formulaire de réservation ;
-- pages connexion et inscription ;
-- responsive de base ;
-- captures d'écran et fichiers de présentation.
-
-Ce qui reste à terminer :
-
-- créer un vrai frontend React/Vite ;
-- créer le backend Express ;
-- brancher les formulaires sur une API ;
-- créer la base de données ;
-- ajouter l'authentification ;
-- créer l'espace administrateur ;
-- améliorer la validation des formulaires ;
-- préparer le déploiement final.
-
-## Difficultés rencontrées
-
-La principale difficulté est de bien organiser le projet pour qu'il puisse évoluer. La première version statique permet de montrer l'interface, mais il faut maintenant ajouter une vraie logique côté serveur et une base de données.
+- Le rôle `admin` doit être attribué en base ou via un outil d'administration externe.
+- Les réservations ne sont pas encore reliées à `users` par une clé étrangère `user_id`.
+- Il n'y a pas encore de tests automatisés.
+- Le projet utilise HTML/CSS/JavaScript vanilla, sans framework frontend.
+- Docker n'est pas nécessaire pour la démonstration si le backend Node.js et la base distante fonctionnent correctement.
 
 ## Améliorations futures
 
-Les prochaines étapes sont :
+- Ajouter une interface de gestion des rôles.
+- Ajouter des tests automatisés.
+- Ajouter des migrations versionnées pour la base de données.
+- Relier les réservations aux utilisateurs connectés avec un `user_id` nullable.
+- Ajouter la modification du statut des réservations dans l'administration.
 
-- migrer le frontend vers React + Vite ;
-- découper l'interface en composants ;
-- ajouter un backend Node.js/Express ;
-- créer la base de données ;
-- sécuriser les comptes utilisateurs ;
-- ajouter un tableau de bord administrateur ;
-- préparer un vrai déploiement.
+## Intérêt pour le DWWM
 
-## Déploiement
+Ce projet permet de démontrer :
 
-Le projet n'est pas encore déployé en ligne. Pour l'instant, il peut être lancé localement avec les fichiers HTML ou avec Docker.
+- la création d'une interface web responsive ;
+- l'organisation d'un backend Express ;
+- la connexion à PostgreSQL ;
+- l'utilisation de requêtes SQL paramétrées ;
+- l'authentification avec JWT ;
+- l'autorisation par rôle `admin` ;
+- la gestion sécurisée des variables d'environnement ;
+- la documentation d'un projet professionnel.

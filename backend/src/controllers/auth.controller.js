@@ -2,8 +2,15 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const userRepository = require('../repositories/user.repository');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'quai-antique-secret-dev';
 const JWT_EXPIRES = '7d';
+
+function getJwtSecret() {
+  if (!process.env.JWT_SECRET) {
+    throw new Error('JWT_SECRET est manquant. La signature JWT n est pas configuree.');
+  }
+
+  return process.env.JWT_SECRET;
+}
 
 async function register(req, res) {
   const { firstName, lastName, email, password } = req.body;
@@ -27,7 +34,7 @@ async function register(req, res) {
 
     const token = jwt.sign(
       { userId: user.id, email: user.email, role: user.role },
-      JWT_SECRET,
+      getJwtSecret(),
       { expiresIn: JWT_EXPIRES },
     );
 
@@ -62,7 +69,7 @@ async function login(req, res) {
 
     const token = jwt.sign(
       { userId: user.id, email: user.email, role: user.role },
-      JWT_SECRET,
+      getJwtSecret(),
       { expiresIn: JWT_EXPIRES },
     );
 

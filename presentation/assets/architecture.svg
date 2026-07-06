@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" width="960" height="580" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="960" height="580" fill="#f7f7f7" rx="12"/>
+
+  <!-- Title -->
+  <text x="480" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#3c2e24" letter-spacing="1">Architecture Globale — Quai Antique</text>
+  <text x="480" y="60" text-anchor="middle" font-size="12" fill="#5f5a54">Netlify · Railway · Supabase PostgreSQL</text>
+
+  <!-- ─── GITHUB CI/CD BAR ─── -->
+  <rect x="280" y="78" width="400" height="44" rx="10" fill="#211817" stroke="#3c2e24" stroke-width="1.5"/>
+  <text x="365" y="96" font-size="13" font-weight="600" fill="#c5baa4">GitHub</text>
+  <text x="365" y="112" font-size="11" fill="#5f5a54">catcodecat/Quai_Antique_Project · branche main</text>
+  <!-- GitHub icon circle -->
+  <circle cx="328" cy="100" r="14" fill="#3c2e24"/>
+  <text x="328" y="105" text-anchor="middle" font-size="14" fill="#ffffff">⎇</text>
+
+  <!-- Arrow from GitHub down-left to Netlify -->
+  <line x1="370" y1="122" x2="230" y2="178" stroke="#9b6a22" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="228,182 224,172 234,176" fill="#9b6a22"/>
+  <rect x="252" y="138" width="86" height="22" rx="4" fill="#fdf8f1"/>
+  <text x="295" y="153" text-anchor="middle" font-size="10" fill="#9b6a22">push → deploy</text>
+
+  <!-- Arrow from GitHub down-right to Railway -->
+  <line x1="590" y1="122" x2="730" y2="178" stroke="#9b6a22" stroke-width="2" stroke-dasharray="6,3"/>
+  <polygon points="732,182 736,172 726,176" fill="#9b6a22"/>
+  <rect x="622" y="138" width="86" height="22" rx="4" fill="#fdf8f1"/>
+  <text x="665" y="153" text-anchor="middle" font-size="10" fill="#9b6a22">push → build</text>
+
+  <!-- ─── NETLIFY CARD ─── -->
+  <rect x="33" y="183" width="270" height="220" rx="12" fill="#ffffff" stroke="#e4ded5" stroke-width="1.5"/>
+  <rect x="33" y="183" width="270" height="50" rx="12" fill="#00ad9f"/>
+  <rect x="33" y="210" width="270" height="23" fill="#00ad9f"/>
+  <text x="105" y="199" font-size="16" font-weight="700" fill="#ffffff">Netlify</text>
+  <text x="105" y="216" font-size="11" fill="#e0faf8">Frontend — CDN statique</text>
+  <!-- Netlify N badge -->
+  <rect x="50" y="193" width="36" height="30" rx="6" fill="#ffffff" opacity="0.2"/>
+  <text x="68" y="214" text-anchor="middle" font-size="18" font-weight="900" fill="#ffffff">N</text>
+
+  <!-- Files list -->
+  <text x="55" y="258" font-size="12" font-weight="600" fill="#3c2e24">Pages HTML</text>
+  <text x="55" y="276" font-size="11" fill="#5f5a54">index · gallery · menu · reservation</text>
+  <text x="55" y="292" font-size="11" fill="#5f5a54">login · register · admin</text>
+  <line x1="55" y1="300" x2="285" y2="300" stroke="#e4ded5" stroke-width="1"/>
+  <text x="55" y="318" font-size="12" font-weight="600" fill="#3c2e24">Assets</text>
+  <text x="55" y="336" font-size="11" fill="#5f5a54">styles.css · app.js · config.js</text>
+  <text x="55" y="352" font-size="11" fill="#5f5a54">assets/images/ (12 fichiers)</text>
+  <line x1="55" y1="360" x2="285" y2="360" stroke="#e4ded5" stroke-width="1"/>
+  <text x="55" y="376" font-size="11" fill="#00ad9f">⚡ Auto-deploy en ~30 secondes</text>
+
+  <!-- ─── RAILWAY CARD ─── -->
+  <rect x="657" y="183" width="270" height="220" rx="12" fill="#ffffff" stroke="#e4ded5" stroke-width="1.5"/>
+  <rect x="657" y="183" width="270" height="50" rx="12" fill="#7c3fe4"/>
+  <rect x="657" y="210" width="270" height="23" fill="#7c3fe4"/>
+  <text x="730" y="199" font-size="16" font-weight="700" fill="#ffffff">Railway</text>
+  <text x="730" y="216" font-size="11" fill="#e8d8ff">Backend — Node.js / Express</text>
+  <!-- R badge -->
+  <rect x="674" y="193" width="36" height="30" rx="6" fill="#ffffff" opacity="0.2"/>
+  <text x="692" y="214" text-anchor="middle" font-size="18" font-weight="900" fill="#ffffff">R</text>
+
+  <!-- Routes list -->
+  <text x="678" y="258" font-size="12" font-weight="600" fill="#3c2e24">Routes API</text>
+  <text x="678" y="276" font-size="11" fill="#5f5a54">POST /api/auth/register</text>
+  <text x="678" y="292" font-size="11" fill="#5f5a54">POST /api/auth/login</text>
+  <text x="678" y="308" font-size="11" fill="#5f5a54">GET / POST /api/reservations</text>
+  <line x1="678" y1="316" x2="908" y2="316" stroke="#e4ded5" stroke-width="1"/>
+  <text x="678" y="334" font-size="12" font-weight="600" fill="#3c2e24">Config</text>
+  <text x="678" y="352" font-size="11" fill="#5f5a54">Nixpacks · railway.json</text>
+  <text x="678" y="368" font-size="11" fill="#5f5a54">node src/server.js</text>
+  <text x="678" y="388" font-size="11" fill="#7c3fe4">⚡ Auto-deploy en ~2 minutes</text>
+
+  <!-- ─── ARROW Netlify → Railway ─── -->
+  <!-- User browser to Netlify -->
+  <rect x="180" y="438" width="120" height="38" rx="20" fill="#3c2e24"/>
+  <text x="240" y="453" text-anchor="middle" font-size="11" font-weight="600" fill="#ffffff">Utilisateur</text>
+  <text x="240" y="467" text-anchor="middle" font-size="10" fill="#c5baa4">navigateur</text>
+
+  <line x1="240" y1="437" x2="240" y2="403" stroke="#3c2e24" stroke-width="2"/>
+  <polygon points="240,403 235,413 245,413" fill="#3c2e24"/>
+  <text x="248" y="424" font-size="10" fill="#3c2e24">HTTPS</text>
+
+  <!-- fetch() arrow Netlify → Railway -->
+  <line x1="303" y1="290" x2="420" y2="290" stroke="#9b6a22" stroke-width="2.5"/>
+  <line x1="540" y1="290" x2="657" y2="290" stroke="#9b6a22" stroke-width="2.5"/>
+  <polygon points="655,285 665,290 655,295" fill="#9b6a22"/>
+  <!-- Label -->
+  <rect x="355" y="272" width="200" height="36" rx="8" fill="#fdf8f1" stroke="#9b6a22" stroke-width="1.5"/>
+  <text x="455" y="287" text-anchor="middle" font-size="11" font-weight="600" fill="#9b6a22">fetch() HTTPS</text>
+  <text x="455" y="301" text-anchor="middle" font-size="10" fill="#5f5a54">API_BASE_URL = Railway URL</text>
+
+  <!-- ─── SUPABASE CARD ─── -->
+  <rect x="345" y="420" width="270" height="140" rx="12" fill="#ffffff" stroke="#e4ded5" stroke-width="1.5"/>
+  <rect x="345" y="420" width="270" height="46" rx="12" fill="#3ecf8e"/>
+  <rect x="345" y="446" width="270" height="20" fill="#3ecf8e"/>
+  <text x="418" y="438" font-size="16" font-weight="700" fill="#ffffff">Supabase</text>
+  <text x="418" y="453" font-size="11" fill="#d0fff0">PostgreSQL managé</text>
+  <!-- S badge -->
+  <rect x="362" y="427" width="36" height="28" rx="6" fill="#ffffff" opacity="0.2"/>
+  <text x="380" y="447" text-anchor="middle" font-size="18" font-weight="900" fill="#ffffff">S</text>
+
+  <text x="365" y="485" font-size="12" font-weight="600" fill="#3c2e24">Tables</text>
+  <text x="365" y="502" font-size="11" fill="#5f5a54">users · reservations</text>
+  <text x="365" y="518" font-size="11" fill="#5f5a54">SSL · DATABASE_URL (env var)</text>
+  <text x="365" y="535" font-size="11" fill="#3ecf8e">Init auto au démarrage Railway</text>
+
+  <!-- Arrow Railway → Supabase -->
+  <line x1="790" y1="403" x2="640" y2="420" stroke="#3ecf8e" stroke-width="2.5"/>
+  <polygon points="642,415 636,425 646,424" fill="#3ecf8e"/>
+  <rect x="672" y="397" width="76" height="22" rx="4" fill="#fdf8f1"/>
+  <text x="710" y="412" text-anchor="middle" font-size="10" fill="#3ecf8e">pg · SSL</text>
+
+  <!-- Arrow Netlify (user) → Supabase label note -->
+  <!-- none, Netlify never calls DB directly -->
+
+  <!-- Legend bottom -->
+  <rect x="33" y="498" width="280" height="62" rx="8" fill="#fdf8f1" stroke="#e4ded5" stroke-width="1"/>
+  <text x="55" y="516" font-size="11" font-weight="600" fill="#3c2e24">Flux des données</text>
+  <line x1="55" y1="526" x2="85" y2="526" stroke="#9b6a22" stroke-width="2.5"/>
+  <text x="92" y="530" font-size="10" fill="#5f5a54">Requêtes API (HTTPS)</text>
+  <line x1="55" y1="542" x2="85" y2="542" stroke="#3ecf8e" stroke-width="2.5"/>
+  <text x="92" y="546" font-size="10" fill="#5f5a54">Connexion base de données</text>
+  <line x1="55" y1="556" x2="85" y2="556" stroke="#9b6a22" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="92" y="560" font-size="10" fill="#5f5a54">CI/CD auto (GitHub push)</text>
+
+  <!-- Legend right -->
+  <rect x="657" y="430" width="270" height="52" rx="8" fill="#fdf8f1" stroke="#e4ded5" stroke-width="1"/>
+  <text x="678" y="448" font-size="11" font-weight="600" fill="#3c2e24">Variables d'environnement Railway</text>
+  <text x="678" y="464" font-size="10" fill="#5f5a54">DATABASE_URL · JWT_SECRET · PORT · CORS_ORIGIN</text>
+  <text x="678" y="477" font-size="10" fill="#9b6a22">Jamais commitées · .env dans .gitignore</text>
+
+</svg>

@@ -166,21 +166,21 @@
           <div class="admin-header">
             <h2>Réservations</h2>
             <div class="admin-controls">
-              <span class="count-badge" id="count-badge">…</span>
+              <span class="count-badge" id="count-badge">...</span>
               <button class="btn btn-sm" id="refresh-btn" onclick="loadReservations()">
-                ↺ Actualiser
+                Actualiser
               </button>
             </div>
           </div>
 
           <div id="reservations-container">
             <div class="admin-state">
-              <p>Chargement des réservations…</p>
+              <p>Chargement des réservations...</p>
             </div>
           </div>
 
           <p class="admin-notice">
-            La colonne <strong>Téléphone</strong> affiche « — » car ce champ n'est pas encore
+            La colonne <strong>Téléphone</strong> affiche "-" car ce champ n'est pas encore
             collecté par le formulaire de réservation.
           </p>
 
@@ -208,17 +208,17 @@
     <script src="config.js"></script>
     <script>
       function formatDate(isoString) {
-        if (!isoString) return '—';
+        if (!isoString) return '-';
         return new Date(isoString).toLocaleDateString('fr-FR');
       }
 
       function formatTime(timeStr) {
-        if (!timeStr) return '—';
+        if (!timeStr) return '-';
         return String(timeStr).slice(0, 5);
       }
 
       function formatDateTime(isoString) {
-        if (!isoString) return '—';
+        if (!isoString) return '-';
         const d = new Date(isoString);
         return (
           d.toLocaleDateString('fr-FR') +
@@ -234,76 +234,111 @@
           cancelled: ['Annulée',    'cancelled'],
         };
         const [label, cls] = map[status] || [status, 'pending'];
-        return `<span class="status-badge status-${cls}">${label}</span>`;
+        const badge = document.createElement('span');
+        badge.className = `status-badge status-${cls}`;
+        badge.textContent = label;
+        return badge;
       }
 
-      function renderTable(list) {
-        if (list.length === 0) {
-          return `<div class="admin-state"><p>Aucune réservation enregistrée pour l'instant.</p></div>`;
+      function createAdminState(message, detail) {
+        const state = document.createElement('div');
+        state.className = 'admin-state';
+
+        const text = document.createElement('p');
+        text.textContent = message;
+        state.appendChild(text);
+
+        if (detail) {
+          const detailText = document.createElement('p');
+          detailText.className = 'error-detail';
+          detailText.textContent = detail;
+          state.appendChild(detailText);
         }
 
-        const rows = list.map((r) => `
-          <tr>
-            <td class="td-name">${r.lastName || ''} ${r.firstName || ''}</td>
-            <td class="td-muted">${r.email || '—'}</td>
-            <td class="td-muted">—</td>
-            <td>${formatDate(r.date)}</td>
-            <td>${formatTime(r.time)}</td>
-            <td class="td-center">${r.guests}</td>
-            <td class="td-muted">${r.allergies || '—'}</td>
-            <td class="td-muted">${formatDateTime(r.createdAt)}</td>
-            <td>${statusBadge(r.status)}</td>
-          </tr>
-        `).join('');
+        return state;
+      }
 
-        return `
-          <div class="table-scroll">
-            <table class="admin-table">
-              <thead>
-                <tr>
-                  <th>Nom</th>
-                  <th>Email</th>
-                  <th>Téléphone</th>
-                  <th>Date</th>
-                  <th>Heure</th>
-                  <th>Pers.</th>
-                  <th>Allergies</th>
-                  <th>Créé le</th>
-                  <th>Statut</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${rows}
-              </tbody>
-            </table>
-          </div>
-        `;
+      function createCell(text, className) {
+        const cell = document.createElement('td');
+        if (className) cell.className = className;
+        cell.textContent = text;
+        return cell;
+      }
+
+      function renderTableSafe(list) {
+        if (list.length === 0) {
+          return createAdminState("Aucune réservation enregistrée pour l'instant.");
+        }
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'table-scroll';
+
+        const table = document.createElement('table');
+        table.className = 'admin-table';
+
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        ['Nom', 'Email', 'Téléphone', 'Date', 'Heure', 'Pers.', 'Allergies', 'Créée le', 'Statut']
+          .forEach((label) => {
+            const th = document.createElement('th');
+            th.textContent = label;
+            headerRow.appendChild(th);
+          });
+        thead.appendChild(headerRow);
+
+        const tbody = document.createElement('tbody');
+        list.forEach((r) => {
+          const row = document.createElement('tr');
+
+          row.appendChild(createCell(`${r.lastName || ''} ${r.firstName || ''}`.trim(), 'td-name'));
+          row.appendChild(createCell(r.email || '-', 'td-muted'));
+          row.appendChild(createCell('-', 'td-muted'));
+          row.appendChild(createCell(formatDate(r.date)));
+          row.appendChild(createCell(formatTime(r.time)));
+          row.appendChild(createCell(String(r.guests || '-'), 'td-center'));
+          row.appendChild(createCell(r.allergies || '-', 'td-muted'));
+          row.appendChild(createCell(formatDateTime(r.createdAt), 'td-muted'));
+
+          const statusCell = document.createElement('td');
+          statusCell.appendChild(statusBadge(r.status));
+          row.appendChild(statusCell);
+
+          tbody.appendChild(row);
+        });
+
+        table.appendChild(thead);
+        table.appendChild(tbody);
+        wrapper.appendChild(table);
+
+        return wrapper;
       }
 
       async function loadReservations() {
         const container = document.getElementById('reservations-container');
         const badge = document.getElementById('count-badge');
 
-        container.innerHTML = '<div class="admin-state"><p>Chargement…</p></div>';
-        badge.textContent = '…';
+        container.replaceChildren(createAdminState('Chargement...'));
+        badge.textContent = '...';
 
         try {
-          const res = await fetch(`${API_BASE_URL}/api/reservations`);
+          const token = localStorage.getItem('qaToken');
+          if (!token) throw new Error('Connexion administrateur requise');
+
+          const res = await fetch(`${API_BASE_URL}/api/reservations`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           if (!res.ok) throw new Error(`Erreur HTTP ${res.status}`);
 
           const data = await res.json();
           const list = data.reservations || [];
 
           badge.textContent = `${list.length} réservation${list.length !== 1 ? 's' : ''}`;
-          container.innerHTML = renderTable(list);
+          container.replaceChildren(renderTableSafe(list));
         } catch (err) {
           badge.textContent = 'Erreur';
-          container.innerHTML = `
-            <div class="admin-state">
-              <p>Impossible de charger les réservations.</p>
-              <p class="error-detail">${err.message}</p>
-            </div>
-          `;
+          container.replaceChildren(createAdminState('Impossible de charger les réservations.', err.message));
         }
       }
 

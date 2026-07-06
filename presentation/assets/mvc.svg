@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" width="960" height="620" font-family="'Segoe UI', Arial, sans-serif">
+
+  <!-- Background -->
+  <rect width="960" height="620" fill="#f7f7f7" rx="12"/>
+
+  <!-- Title -->
+  <text x="480" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#3c2e24" letter-spacing="1">Pattern MVC — Backend Quai Antique</text>
+  <text x="480" y="58" text-anchor="middle" font-size="12" fill="#5f5a54">Routes · Controllers · Repositories · Base de données</text>
+
+  <!-- ─── REQUEST / RESPONSE LABELS ─── -->
+  <rect x="20" y="70" width="920" height="34" rx="8" fill="#3c2e24" opacity="0.08"/>
+  <text x="120" y="92" text-anchor="middle" font-size="11" fill="#5f5a54">Requête HTTP</text>
+  <text x="840" y="92" text-anchor="middle" font-size="11" fill="#5f5a54">Réponse JSON</text>
+  <line x1="20" y1="104" x2="940" y2="104" stroke="#e4ded5" stroke-width="1.5"/>
+
+  <!-- ─────────────── LAYER 1 : ROUTES ─────────────── -->
+  <text x="165" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#3c2e24">① ROUTES</text>
+  <text x="165" y="142" text-anchor="middle" font-size="11" fill="#5f5a54">backend/src/routes/</text>
+
+  <!-- health.routes.js -->
+  <rect x="28" y="152" width="274" height="48" rx="8" fill="#ffffff" stroke="#e4ded5" stroke-width="1.5"/>
+  <rect x="28" y="152" width="6" height="48" rx="3" fill="#3c2e24"/>
+  <text x="48" y="171" font-size="11" font-weight="600" fill="#3c2e24">health.routes.js</text>
+  <text x="48" y="188" font-size="11" fill="#5f5a54">GET  /api/health</text>
+
+  <!-- auth.routes.js -->
+  <rect x="28" y="208" width="274" height="62" rx="8" fill="#ffffff" stroke="#e4ded5" stroke-width="1.5"/>
+  <rect x="28" y="208" width="6" height="62" rx="3" fill="#9b6a22"/>
+  <text x="48" y="227" font-size="11" font-weight="600" fill="#9b6a22">auth.routes.js</text>
+  <text x="48" y="244" font-size="11" fill="#5f5a54">POST /api/auth/register</text>
+  <text x="48" y="260" font-size="11" fill="#5f5a54">POST /api/auth/login</text>
+
+  <!-- reservation.routes.js -->
+  <rect x="28" y="278" width="274" height="62" rx="8" fill="#ffffff" stroke="#e4ded5" stroke-width="1.5"/>
+  <rect x="28" y="278" width="6" height="62" rx="3" fill="#c5baa4"/>
+  <text x="48" y="297" font-size="11" font-weight="600" fill="#5f5a54">reservation.routes.js</text>
+  <text x="48" y="314" font-size="11" fill="#5f5a54">GET  /api/reservations</text>
+  <text x="48" y="330" font-size="11" fill="#5f5a54">POST /api/reservations</text>
+
+  <!-- app.js config note -->
+  <rect x="28" y="350" width="274" height="44" rx="8" fill="#fdf8f1" stroke="#9b6a22" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="48" y="368" font-size="11" font-weight="600" fill="#9b6a22">app.js (Express)</text>
+  <text x="48" y="383" font-size="11" fill="#5f5a54">CORS multi-origine · express.json()</text>
+
+  <!-- ─── ARROW Routes → Controllers ─── -->
+  <line x1="302" y1="260" x2="342" y2="260" stroke="#9b6a22" stroke-width="2.5"/>
+  <polygon points="340,255 350,260 340,265" fill="#9b6a22"/>
+  <text x="322" y="253" text-anchor="middle" font-size="9" fill="#9b6a22">appel</text>
+
+  <!-- ─────────────── LAYER 2 : CONTROLLERS ─────────────── -->
+  <text x="490" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#9b6a22">② CONTROLLERS</text>
+  <text x="490" y="142" text-anchor="middle" font-size="11" fill="#5f5a54">backend/src/controllers/</text>
+
+  <!-- auth.controller.js -->
+  <rect x="350" y="152" width="280" height="160" rx="8" fill="#ffffff" stroke="#9b6a22" stroke-width="1.5"/>
+  <rect x="350" y="152" width="280" height="36" rx="8" fill="#9b6a22" opacity="0.12"/>
+  <rect x="350" y="170" width="280" height="18" fill="#9b6a22" opacity="0.12"/>
+  <text x="370" y="171" font-size="12" font-weight="700" fill="#9b6a22">auth.controller.js</text>
+
+  <text x="370" y="195" font-size="11" font-weight="600" fill="#3c2e24">register()</text>
+  <text x="370" y="210" font-size="10" fill="#5f5a54">• Valide tous les champs</text>
+  <text x="370" y="224" font-size="10" fill="#5f5a54">• Vérifie email unique</text>
+  <text x="370" y="238" font-size="10" fill="#5f5a54">• bcrypt.hash(password, 10)</text>
+  <text x="370" y="252" font-size="10" fill="#5f5a54">• createUser → JWT → 201</text>
+
+  <line x1="370" y1="261" x2="620" y2="261" stroke="#e4ded5" stroke-width="1"/>
+
+  <text x="370" y="278" font-size="11" font-weight="600" fill="#3c2e24">login()</text>
+  <text x="370" y="293" font-size="10" fill="#5f5a54">• findUserByEmail</text>
+  <text x="370" y="307" font-size="10" fill="#5f5a54">• bcrypt.compare(pwd, hash)</text>
+
+  <!-- reservation.controller.js -->
+  <rect x="350" y="322" width="280" height="134" rx="8" fill="#ffffff" stroke="#c5baa4" stroke-width="1.5"/>
+  <rect x="350" y="322" width="280" height="36" rx="8" fill="#c5baa4" opacity="0.3"/>
+  <rect x="350" y="340" width="280" height="18" fill="#c5baa4" opacity="0.3"/>
+  <text x="370" y="341" font-size="12" font-weight="700" fill="#5f5a54">reservation.controller.js</text>
+
+  <text x="370" y="366" font-size="11" font-weight="600" fill="#3c2e24">listReservations()</text>
+  <text x="370" y="381" font-size="10" fill="#5f5a54">• findAllReservations → 200</text>
+
+  <line x1="370" y1="390" x2="620" y2="390" stroke="#e4ded5" stroke-width="1"/>
+
+  <text x="370" y="408" font-size="11" font-weight="600" fill="#3c2e24">createReservation()</text>
+  <text x="370" y="423" font-size="10" fill="#5f5a54">• Valide champs obligatoires</text>
+  <text x="370" y="438" font-size="10" fill="#5f5a54">• createReservation → 201</text>
+
+  <!-- ─── ARROW Controllers → Repositories ─── -->
+  <line x1="630" y1="280" x2="666" y2="280" stroke="#3c2e24" stroke-width="2.5"/>
+  <polygon points="664,275 674,280 664,285" fill="#3c2e24"/>
+  <text x="648" y="272" text-anchor="middle" font-size="9" fill="#3c2e24">query</text>
+
+  <!-- ─────────────── LAYER 3 : REPOSITORIES ─────────────── -->
+  <text x="780" y="126" text-anchor="middle" font-size="13" font-weight="700" fill="#3c2e24">③ REPOSITORIES</text>
+  <text x="780" y="142" text-anchor="middle" font-size="11" fill="#5f5a54">backend/src/repositories/</text>
+
+  <!-- user.repository.js -->
+  <rect x="674" y="152" width="264" height="160" rx="8" fill="#ffffff" stroke="#3c2e24" stroke-width="1.5"/>
+  <rect x="674" y="152" width="264" height="36" rx="8" fill="#3c2e24" opacity="0.1"/>
+  <rect x="674" y="170" width="264" height="18" fill="#3c2e24" opacity="0.1"/>
+  <text x="694" y="171" font-size="12" font-weight="700" fill="#3c2e24">user.repository.js</text>
+
+  <text x="694" y="196" font-size="11" font-weight="600" fill="#3c2e24">findUserByEmail(email)</text>
+  <text x="694" y="212" font-size="10" fill="#5f5a54">SELECT ... FROM users</text>
+  <text x="694" y="226" font-size="10" fill="#9b6a22">WHERE email = $1</text>
+
+  <line x1="694" y1="234" x2="928" y2="234" stroke="#e4ded5" stroke-width="1"/>
+
+  <text x="694" y="252" font-size="11" font-weight="600" fill="#3c2e24">createUser({ ... })</text>
+  <text x="694" y="267" font-size="10" fill="#5f5a54">INSERT INTO users (...)</text>
+  <text x="694" y="281" font-size="10" fill="#9b6a22">VALUES ($1,$2,$3,$4)</text>
+  <text x="694" y="295" font-size="10" fill="#5f5a54">RETURNING id, role...</text>
+
+  <!-- reservation.repository.js -->
+  <rect x="674" y="322" width="264" height="134" rx="8" fill="#ffffff" stroke="#c5baa4" stroke-width="1.5"/>
+  <rect x="674" y="322" width="264" height="36" rx="8" fill="#c5baa4" opacity="0.3"/>
+  <rect x="674" y="340" width="264" height="18" fill="#c5baa4" opacity="0.3"/>
+  <text x="694" y="341" font-size="12" font-weight="700" fill="#5f5a54">reservation.repository.js</text>
+
+  <text x="694" y="366" font-size="11" font-weight="600" fill="#3c2e24">findAllReservations()</text>
+  <text x="694" y="381" font-size="10" fill="#5f5a54">SELECT ... ORDER BY created_at DESC</text>
+
+  <line x1="694" y1="390" x2="928" y2="390" stroke="#e4ded5" stroke-width="1"/>
+
+  <text x="694" y="408" font-size="11" font-weight="600" fill="#3c2e24">createReservation({ ... })</text>
+  <text x="694" y="423" font-size="10" fill="#5f5a54">INSERT INTO reservations</text>
+  <text x="694" y="438" font-size="10" fill="#9b6a22">VALUES ($1…$7) RETURNING *</text>
+
+  <!-- ─── ARROW Repositories → DB ─── -->
+  <line x1="806" y1="456" x2="806" y2="490" stroke="#3ecf8e" stroke-width="2.5"/>
+  <polygon points="801,488 806,498 811,488" fill="#3ecf8e"/>
+  <text x="820" y="476" font-size="9" fill="#3ecf8e">pg.query()</text>
+
+  <!-- ─────────────── LAYER 4 : DATABASE ─────────────── -->
+  <rect x="350" y="498" width="580" height="68" rx="10" fill="#ffffff" stroke="#3ecf8e" stroke-width="2"/>
+  <rect x="350" y="498" width="580" height="30" rx="10" fill="#3ecf8e" opacity="0.15"/>
+  <rect x="350" y="515" width="580" height="13" fill="#3ecf8e" opacity="0.15"/>
+  <text x="480" y="516" font-size="13" font-weight="700" fill="#3c2e24">④ BASE DE DONNÉES — PostgreSQL Supabase</text>
+  <text x="490" y="535" font-size="11" fill="#5f5a54">Pool pg · DATABASE_URL (env var) · Requêtes préparées · SSL</text>
+  <text x="490" y="552" font-size="11" fill="#5f5a54">Tables :  </text>
+  <rect x="554" y="541" width="58" height="18" rx="4" fill="#3c2e24"/>
+  <text x="583" y="554" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">users</text>
+  <text x="620" y="553" font-size="11" fill="#5f5a54">  ·  </text>
+  <rect x="634" y="541" width="94" height="18" rx="4" fill="#9b6a22"/>
+  <text x="681" y="554" text-anchor="middle" font-size="10" font-weight="700" fill="#ffffff">reservations</text>
+
+  <!-- Arrow from routes back (response) -->
+  <line x1="302" y1="306" x2="342" y2="306" stroke="#e4ded5" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- ─── CONFIG layer ─── -->
+  <rect x="28" y="468" width="274" height="60" rx="8" fill="#ffffff" stroke="#e4ded5" stroke-width="1.5"/>
+  <text x="48" y="488" font-size="12" font-weight="700" fill="#3c2e24">Config</text>
+  <text x="48" y="505" font-size="11" fill="#5f5a54">database.js — Pool PostgreSQL</text>
+  <text x="48" y="520" font-size="11" fill="#5f5a54">initDatabase.js — CREATE TABLE</text>
+
+  <!-- Arrow config → DB -->
+  <line x1="302" y1="498" x2="350" y2="530" stroke="#3ecf8e" stroke-width="1.5" stroke-dasharray="4,2"/>
+
+  <!-- ─── MIDDLEWARES (empty) ─── -->
+  <rect x="28" y="540" width="274" height="42" rx="8" fill="#fdf8f1" stroke="#e4ded5" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="48" y="557" font-size="11" font-weight="600" fill="#5f5a54">middlewares/ (prévu)</text>
+  <text x="48" y="572" font-size="11" fill="#c62828">verifyToken · requireAdmin — à implémenter</text>
+
+  <!-- ─── PRINCIPLE BOX ─── -->
+  <rect x="28" y="592" width="908" height="20" rx="6" fill="#3c2e24" opacity="0.07"/>
+  <text x="480" y="606" text-anchor="middle" font-size="11" fill="#5f5a54">
+    Règle MVC : les Routes ne contiennent pas de logique · les Controllers ne font pas de SQL · les Repositories ne font que du SQL
+  </text>
+
+</svg>
